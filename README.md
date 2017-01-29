@@ -1,4 +1,12 @@
 # My-AppDaemon
 My apps, my helpfiles, all about AppDaemon for Home Assistant
 
-Readme will be updated later
+AppDaemon for beginner can be found here:
+
+http://appdaemon.reot.org/AppDaemon_for_beginner.html
+http://appdaemon.reot.org/AppDaemon_for_beginner_app_2.html
+
+the list of appdeamon commands:
+
+http://appdaemon.reot.org/appdeamon_commands.html
+
