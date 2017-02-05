@@ -10,5 +10,5 @@ the list of appdeamon commands:
 
 http://appdaemon.reot.org/appdeamon_commands.html
 
-lets add something for testing purpose
+
 
