@@ -199,7 +199,7 @@ mso-ansi-language:EN-US'>&nbsp;</span></p>
 
 <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
 normal'><span lang=EN-US style='font-size:12.0pt;font-family:"Times New Roman";
-mso-ansi-language:EN-US'>Ok, let�s get back to our topic before we wander off
+mso-ansi-language:EN-US'>Ok, let's get back to our topic before we wander off
 to far.</span></p>
 
 <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
@@ -211,7 +211,7 @@ class=GramE>your</span> inside lights during the evening.</span></p>
 
 <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
 normal'><span lang=EN-US style='font-size:12.0pt;font-family:"Times New Roman";
-mso-ansi-language:EN-US'>I can tell you that I haven�t turned on a light in my
+mso-ansi-language:EN-US'>I can tell you that I haven't turned on a light in my
 living room since I started using HA.</span></p>
 
 <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
