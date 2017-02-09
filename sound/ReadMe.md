@@ -10,10 +10,10 @@ Several other soundfunctions are there to that arent supported with Home Assista
 
 you need to install gtts, vlc and mpg321
 
-pip3 install gtts
-sudo apt-get update
-sudo apt-get install mpg321
-sudo apt-get install vlc
+- pip3 install gtts
+- sudo apt-get update
+- sudo apt-get install mpg321
+- sudo apt-get install vlc
 
 then save this app in your app dir with name: sound.py
 
