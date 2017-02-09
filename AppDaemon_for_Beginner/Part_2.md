@@ -6,7 +6,7 @@ I guess I got you interested in this programming thing. That's great. So let's m
 Google is my biggest friend when I am programming. I am not a professional programmer (anymore) and in the last few years I had to learn a lot off new things.  I don't know about you, but I get older every year.  
 So sometimes I need some help, because I forget something or I haven't learned it yet. The API from AppDaemon is always opened so I can look up how to do it correctly, and many other things using google.
 
-But don't start googling yet, you might find a better tutorial then this one :blink:
+But don't start googling yet, you might find a better tutorial then this one :wink:
 
 Ok, let's get back to our topic before we wander off to far.  
 In HA one off the first things you find are the automations for sunset and sunrise. They are nice and fun. You can make you outside lights shine during the night or dim your inside lights during the evening.  
