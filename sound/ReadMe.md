@@ -1,4 +1,4 @@
- my sound functions
+## my sound functions
 
 A general app for sound with AppDaemon.
 sometimes its wise to stay a little behind. I needed to stay with an older version from Home Assistant for a while.
@@ -18,7 +18,7 @@ sudo apt-get install vlc
 then save this app in your app dir with name: sound.py
 
 in the appdaemon configfile you need to set ( i included an example you can copy to your cfg file):                                           
-                                                                                
+```                                                                                
 [soundfunctions]                                                                       
 module = sound                                                                         
 class = sound                                                                          
@@ -54,10 +54,10 @@ keepspeakeralivevolume = 70 # volume that the sound is played with, only with ke
 
 logging = false or true # (default = False)
 logfile = /path/to/your/log.file # a dedicated sound logfile
-                                                                                       
+```                                                                                       
 --------------------------------------------------------------------------------                                                                                         
 
-##then you can use it like this in any app                                               
+## then you can use it like this in any app                                               
                                                                                    
 sound = self.get_app("soundfunctions")                                                 
 sound.say("Any text you like","your_language","your_priority","volume")    
@@ -72,7 +72,7 @@ to put music in your soundlist (or sounds)
 for priority give "1","2","3","4" or "5"
 
 
-##Supported TTS languages:
+## Supported TTS languages:
 
 supported languages: * 'af' : 'Afrikaans'
                      * 'sq' : 'Albanian'
