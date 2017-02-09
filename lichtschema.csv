@@ -1,0 +1,42 @@
+#verlichting;#aan;#uit;#dagen
+################################ buitenverlichting ##################################;;;
+switch.waterloop;sunset:10;00:00:05;mon,tue,wed,thu,fri
+switch.waterloop;sunset:10;01:45:00;sat,sun
+switch.jacuzzi;sunset:20;00:00:10;mon,tue,wed,thu,fri
+switch.jacuzzi;sunset:20;01:45:05;sat,sun
+#switch.kerstfiets;#sunset:30;#00:00:10;#mon,tue,wed,thu,fri
+#switch.kerstfiets;#sunset:30;#01:45:05;#sat,sun
+switch.aquariums;;01:30:00;mon,tue,wed,thu,fri,sat,sun
+################################ leefruimtes ##################################;;;
+switch.hboog;sunset:-3600;;mon,tue,wed,thu,fri,sat,sun
+switch.hboog;;20:25:00;fri,sat
+switch.hboog;00:30:00;;sat,sun
+switch.hbank;sunset:-3605;;mon,tue,wed,thu,fri,sat,sun
+switch.hbank;;20:25:05;fri,sat
+switch.hbank;00:30:05;;sat,sun
+switch.hrozenhoek;sunset:-3610;;mon,tue,wed,thu,fri,sat,sun
+switch.hrozenhoek;;20:25:10;fri,sat
+switch.hrozenhoek;00:30:10;;sat,sun
+switch.eraamhoek;sunset:-3615;;mon,tue,wed,thu,fri,sat,sun
+switch.eraamhoek;;20:25:15;fri,sat
+switch.eraamhoek;00:30:15;;sat,sun
+switch.epchoek;sunset:-3620;;mon,tue,wed,thu,fri,sat,sun
+switch.epchoek;;20:25:20;fri,sat
+switch.epchoek;00:30:20;;sat,sun
+switch.ewandmeubel;sunset:-3625;;mon,tue,wed,thu,fri,sat,sun
+switch.ewandmeubel;;20:25:25;fri,sat
+switch.ewandmeubel;00:30:25;;sat,sun
+switch.kachel_9_1;sunset:-3630;;mon,tue,wed,thu,fri,sat,sun
+switch.kachel_9_1;;20:25:30;fri,sat
+switch.kachel_9_1;00:30:30;;sat,sun
+light.vitrine_in_de_gang;sunset:-3630;;mon,tue,wed,thu,fri,sat,sun
+light.vitrine_in_de_gang;;20:25:30;fri,sat
+light.vitrine_in_de_gang;00:30:30;;sat,sun
+################################ slaapkamer ##################################;;;
+switch.slaapkamer_1_30_12;23:30:00;;mon,tue,wed,thu,sun
+switch.slaapkamer_1_30_12;00:30:00;;sat,sun
+################################ weergave switches ##################################;;;
+input_boolean.donkeredag;;sunset:-3600;mon,tue,wed,thu,fri,sat,sun
+input_boolean.avondverlichting;sunset:-3600;;mon,tue,wed,thu,fri,sat,sun
+#switch.kerstboom;#sunrise:10;;#mon,tue,wed,thu,fri,sat,sun
+#switch.kerstboom;;#20:25:00;#fri,sat
