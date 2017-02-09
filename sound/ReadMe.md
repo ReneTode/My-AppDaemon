@@ -56,7 +56,9 @@ keepspeakeralivevolume = 70 # volume that the sound is played with, only with ke
 logging = false or true # (default = False)
 logfile = /path/to/your/log.file # a dedicated sound logfile
 ```                                                                                       
---------------------------------------------------------------------------------                                                                                         
+
+I also included an example YAMLfile
+copiing that into the home Assistant YAML will give the needed sliders and input booleans.
 
 ## then you can use it like this in any app                                               
                                                                                    
