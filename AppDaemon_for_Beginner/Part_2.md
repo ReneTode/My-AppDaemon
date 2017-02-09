@@ -19,7 +19,7 @@ We can use that anywhere in our pythonscripts to compare to your local time for 
 But wait there is even more!  
 Andrew also created **self.runatsunset(The_function_you want_to_start, offset, kwargs) :one:** and **self.run_at_sunrise(The_function_you want_tostart, offset, kwargs) :one:**  
 I think you understand that this could be used as trigger, so in our initialize function.  
-Don't be scared from the word **kwargs (2)**. It is not klingon language or so (yeah I am a startrek fan) Kwargs is a python word that is used on a place where you can use several variables you want to pass to the function.  
+Don't be scared from the word **kwargs :two:**. It is not klingon language or so (yeah I am a startrek fan) Kwargs is a python word that is used on a place where you can use several variables you want to pass to the function.  
 So at that place you can give something to your function. Maybe you like to give a description or a color for your lights. I don't use it a lot actually, but it is there.  
 Do you think that's all? Not in AppDaemon. We also have: **self.sunup() :one:** and **self.sun_down() :one:** So we can check if the sun is up or down without calculating or thinking.  
 
