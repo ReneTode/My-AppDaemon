@@ -12,16 +12,16 @@ Ok, let's get back to our topic before we wander off to far.
 In HA one off the first things you find are the automations for sunset and sunrise. They are nice and fun. You can make you outside lights shine during the night or dim your inside lights during the evening.  
 I can tell you that I haven't turned on a light in my living room since I started using HA.  
 Andrew has given us some nice and easy functions for using the sunset and sunrise in AppDaemon.  
-The first 2 are **self.sunset() (1)** and **self.sunrise() (1)**  
+The first 2 are **self.sunset() :one:** and **self.sunrise() :one:**  
 They are really what they seem to be. Just the time that the sun will set or rise. At least when you did everything right in HA :blink:
 We can use that anywhere in our pythonscripts to compare to your local time for instance.  
 
 But wait there is even more!  
-Andrew also created **self.runatsunset(The_function_you want_to_start, offset, kwargs) (1)** and **self.run_at_sunrise(The_function_you want_tostart, offset, kwargs) (1)**  
+Andrew also created **self.runatsunset(The_function_you want_to_start, offset, kwargs) :one:** and **self.run_at_sunrise(The_function_you want_tostart, offset, kwargs) :one:**  
 I think you understand that this could be used as trigger, so in our initialize function.  
 Don't be scared from the word **kwargs (2)**. It is not klingon language or so (yeah I am a startrek fan) Kwargs is a python word that is used on a place where you can use several variables you want to pass to the function.  
 So at that place you can give something to your function. Maybe you like to give a description or a color for your lights. I don't use it a lot actually, but it is there.  
-Do you think that's all? Not in AppDaemon. We also have: **self.sunup() (1)** and **self.sun_down() (1)** So we can check if the sun is up or down without calculating or thinking.  
+Do you think that's all? Not in AppDaemon. We also have: **self.sunup() :one:** and **self.sun_down() :one:** So we can check if the sun is up or down without calculating or thinking.  
 
 ## Args
 
@@ -30,7 +30,7 @@ Args! No again its not klingon language ;) Args is short for arguments. Good arg
 Just to give you an example: x + 1 = ?  
 I guess you cant give the answer right now. but you can if I tell you that x is 4, and also when I say that x = 67.  
 That's what we do with args.  
-In our python script we use **self.args["your_arg_name"] (1)** and then we can put those args in our cfg file.  
+In our python script we use **self.args["your_arg_name"] :one:** and then we can put those args in our cfg file.  
 Note that this is not a function. A function would have the variables between () and here you use []. Actually that's not really important, but now you know why we don't use ()
 In our cfg file we could then put your_arg_name = Mr. Bean and in another part we could place your_argname = Queen Elisabeth.
 Off course we don't want to automate those people, but I learned that it sometimes helps to think of something weird to remember easy things.
@@ -106,11 +106,11 @@ Then we get:
     self.runatsunrise(self.light_off_function, ,offset = int(self.args["sunrise_offset"])
 ```
 
-Actually there is only 1 thing that I haven't talked about already and that is the part **int() (2)**  
-As you see it has brackets. So it is a function that is standard python. All that it does is convert a **string (text) (2)** to an **integer (number) (2)**.  
+Actually there is only 1 thing that I haven't talked about already and that is the part **int() :two:**  
+As you see it has brackets. So it is a function that is standard python. All that it does is convert a **string (text) :two:** to an **integer (number) :two:**.  
 All arguments you get with self.args are variables of the type string. And for the functions run_at_sunset and run_at_sunrise we need a variable from the type integer. So we convert the string to an integer.  
 Obviously that only works if the variable actually contains numbers and not just characters.  
-I used **'offset=' (1)** in our lines. The keyword offset is important because we can also give on other variables to our function. For instance **random=... (1)
+I used **'offset=' :one:** in our lines. The keyword offset is important because we can also give on other variables to our function. For instance **random=... :one:**
 The arguments sunset_offset and sunrise_offset we can later set in our cfg file.
 
 The next line:
@@ -163,5 +163,5 @@ I hope you don't turn on to many light, because then you could have problems sle
 
 Have fun trying it out.
 
-**(1) these words are AppDaemon specific. you can find them in the API**   
-**(2) these words you can lookup by googling for "python this_word"**
+**:one: these words are AppDaemon specific. you can find them in the API**   
+**:two: these words you can lookup by googling for "python this_word"**
