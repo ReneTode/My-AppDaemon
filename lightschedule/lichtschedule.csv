@@ -2,9 +2,6 @@
 ################################ buitenverlichting ##################################
 switch.waterloop;sunset:10;00:00:05;mon,tue,wed,thu,fri
 switch.waterloop;sunset:10;01:45:00;sat,sun
-switch.jacuzzi;sunset:20;01:45:05;sat,sun
-#switch.kerstfiets;#sunset:30;#00:00:10;#mon,tue,wed,thu,fri
-#switch.kerstfiets;#sunset:30;#01:45:05;#sat,sun
 switch.aquariums;;01:30:00;mon,tue,wed,thu,fri,sat,sun
 ################################ leefruimtes ##################################;;;
 switch.hboog;sunset:-3600;;mon,tue,wed,thu,fri,sat,sun
