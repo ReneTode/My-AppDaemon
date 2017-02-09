@@ -29,8 +29,9 @@ defaultlanguage = en # choose any of the languages mentioned below
 
 startdelay = 30 # default = 30
 maindelay = 2 # default = 2
+
 restartboolean = input_boolean.yourrestartboolean # set only if you want to be able to reset manually
-#extracontrole = false or true # (default = false) checks if mainloop is still running correctly.
+extracontrole = false or true # (default = false) checks if mainloop is still running correctly.
 extracontrole_repeattime # (default = 900) the amount of seconds between controles                                             
 
 use_radio = false or true # (default = false)
@@ -59,36 +60,37 @@ logfile = /path/to/your/log.file # a dedicated sound logfile
 
 ## then you can use it like this in any app                                               
                                                                                    
+```
 sound = self.get_app("soundfunctions")                                                 
 sound.say("Any text you like","your_language","your_priority","volume")    
-
+```
 you can also use:
                                                                                        
+```
 sound = self.get_app("soundfunctions")                                                 
 sound.playsound("any valid mp3 file","your_priority","volume")
-
+```
 to put music in your soundlist (or sounds)
 
 for priority give "1","2","3","4" or "5"
 
 
 ## Supported TTS languages:
-
-supported languages: * 'af' : 'Afrikaans'
-                     * 'sq' : 'Albanian'
-                     * 'ar' : 'Arabic'
-                     * 'hy' : 'Armenian'
-                     * 'bn' : 'Bengali'
-                     * 'ca' : 'Catalan'
-                     * 'zh' : 'Chinese'
-                     * 'zh-cn' : 'Chinese (Mandarin/China)'
-                     * 'zh-tw' : 'Chinese (Mandarin/Taiwan)'
-                     * 'zh-yue' : 'Chinese (Cantonese)'
-                     * 'hr' : 'Croatian'
-                     * 'cs' : 'Czech'
-                     * 'da' : 'Danish'
-                     * 'nl' : 'Dutch'
-                     * 'en' : 'English'
+- 'af' : 'Afrikaans'
+- 'sq' : 'Albanian'
+- 'ar' : 'Arabic'
+- 'hy' : 'Armenian'
+- 'bn' : 'Bengali'
+- 'ca' : 'Catalan'
+- 'zh' : 'Chinese'
+- 'zh-cn' : 'Chinese (Mandarin/China)'
+- 'zh-tw' : 'Chinese (Mandarin/Taiwan)'
+- 'zh-yue' : 'Chinese (Cantonese)'
+- 'hr' : 'Croatian'
+- 'cs' : 'Czech'
+- 'da' : 'Danish'
+- 'nl' : 'Dutch'
+- 'en' : 'English'
                      * 'en-au' : 'English (Australia)'
                      * 'en-uk' : 'English (United Kingdom)'
                      * 'en-us' : 'English (United States)'
