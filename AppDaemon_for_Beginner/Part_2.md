@@ -1,6 +1,7 @@
+## AppDaemon for beginner part 2
+## Sunrise and sunset
 
 I guess I got you interested in this programming thing. That's great. So let's make another App.   
-
 
 Google is my biggest friend when I am programming. I am not a professional programmer (anymore) and in the last few years I had to learn a lot off new things.  I don't know about you, but I get older every year.  
 So sometimes I need some help, because I forget something or I haven't learned it yet. The API from AppDaemon is always opened so I can look up how to do it correctly, and many other things using google.
@@ -12,14 +13,17 @@ In HA one off the first things you find are the automations for sunset and sunri
 I can tell you that I haven't turned on a light in my living room since I started using HA.  
 Andrew has given us some nice and easy functions for using the sunset and sunrise in AppDaemon.  
 The first 2 are **self.sunset() (1)** and **self.sunrise() (1)**  
-They are really what they seem to be. Just the time that the sun will set or rise. At least when you did everything right in HA ;)  
+They are really what they seem to be. Just the time that the sun will set or rise. At least when you did everything right in HA :blink:
 We can use that anywhere in our pythonscripts to compare to your local time for instance.  
+
 But wait there is even more!  
 Andrew also created **self.runatsunset(The_function_you want_to_start, offset, kwargs) (1)** and **self.run_at_sunrise(The_function_you want_tostart, offset, kwargs) (1)**  
 I think you understand that this could be used as trigger, so in our initialize function.  
 Don't be scared from the word **kwargs (2)**. It is not klingon language or so (yeah I am a startrek fan) Kwargs is a python word that is used on a place where you can use several variables you want to pass to the function.  
 So at that place you can give something to your function. Maybe you like to give a description or a color for your lights. I don't use it a lot actually, but it is there.  
 Do you think that's all? Not in AppDaemon. We also have: **self.sunup() (1)** and **self.sun_down() (1)** So we can check if the sun is up or down without calculating or thinking.  
+
+## Args
 
 Oke, that's about it for sunrise and sunset. We will use it in a few minutes, but first I want to tell you about another very important thing in AppDaemon.  
 Args! No again its not klingon language ;) Args is short for arguments. Good arguments are a base for a conversation (Bad arguments actually also) but in this case it is nothing more the something we pass on.  
