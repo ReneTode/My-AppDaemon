@@ -57,7 +57,7 @@ input_slider:
     step: 1
     icon: mdi:brightness-7
   foscam_sharpness:
-    name: Scharpness
+    name: Sharpness
     initial: 50
     min: 0
     max: 100
