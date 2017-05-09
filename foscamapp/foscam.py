@@ -201,7 +201,10 @@ class foscam(appapi.AppDaemon):
 
   def set_pic_setting(self, entity, attribute, old, new, kwargs):
     if kwargs["settingstype"] != "Default":
-      data = urlopen(self.url + "set" + kwargs["settingstype"] + "&" + kwargs["settingstype"].lower() + "=" + new).read().decode()
+      if kwargs["settingstype"] == "Contrast":
+        data = urlopen(self.url + "setContrast&constrast=" + new).read().decode()
+      else:
+        data = urlopen(self.url + "set" + kwargs["settingstype"] + "&" + kwargs["settingstype"].lower() + "=" + new).read().decode()
     else:
       data = urlopen(self.url + "resetImageSetting").read().decode()
       self.turn_off(self.default_pic_settings_switch)
