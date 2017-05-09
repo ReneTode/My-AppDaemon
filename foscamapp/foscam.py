@@ -83,7 +83,7 @@ class foscam(appapi.AppDaemon):
     self.save_snap_dir = self.args["save_snap_dir"]
 
     self.url = "http://"+ self.host + ":" + self.port + "/cgi-bin/CGIProxy.fcgi?&usr=" + self.user + "&pwd=" + self.password + "&cmd="
-    runtime = datetime.datetime.now()
+    runtime = datetime.datetime.now() + datetime.timedelta(seconds=5)
     
     self.run_every(self.get_sensors,runtime,repeat)        
     self.listen_state(self.move_up_down,self.up_down_slider)
