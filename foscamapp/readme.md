@@ -14,3 +14,7 @@ to use this version:
 - place the foscam.py in your Appdirectory
 - edit the appdaemon.cfg with the parts i provided in appdaemon.cfg
 - edit your HomeAssistant YAML files and add the things you find in the YAML file i provided.
+
+when finished it should look like:
+
+![screenshot](foscam2.jpg)
