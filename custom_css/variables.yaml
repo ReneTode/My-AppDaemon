@@ -1,0 +1,14 @@
+
+input_select_title_style: $style_title
+input_select_title2_style: $style_title2
+input_select_widget_style: $background_style
+input_select_select_style: ""
+
+new_input_slider_title_style: $style_title
+new_input_slider_title2_style: $style_title2
+new_input_slider_minvalue_style: $style_title
+new_input_slider_maxvalue_style: $style_title
+new_input_slider_value_style: $style_title
+new_input_slider_slider_style: ""
+new_input_slider_widget_style: $background_style
+
