@@ -22,4 +22,5 @@ when finished it should look like:
 note: this version was created for older versions from Appdaemon
 in the newer versions the cfg file is replaced with an yaml file.
 for the newest version from Appdaemon replace step 3 with
+
 3) edit the app.yaml with the parts i provided in app.yaml
