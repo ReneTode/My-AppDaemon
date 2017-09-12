@@ -1,0 +1,29 @@
+inputslider:
+  ttsvolume:
+    name: Volume from speech
+    initial: 80
+    min: 70
+    max: 100
+    step: 5
+  radiovolume:
+    name: Volume from radio
+    initial: 80
+    min: 70
+    max: 100
+    step: 5
+  clockvolume:
+    name: Volume from clock
+    initial: 80
+    min: 70
+    max: 100
+    step: 5
+
+input_boolean:
+  forcesoundrestart:
+    name: Restart soundmodule
+    initial: off
+    icon: mdi:music-note
+  radio:
+    name: Radio
+    initial: off
+    icon: mdi:music-note
