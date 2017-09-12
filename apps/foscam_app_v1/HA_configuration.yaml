@@ -1,0 +1,160 @@
+# if you have more in your HA config you need to place the parts with the right components.
+
+camera:
+  - platform: foscam
+    ip: your_ip
+    username: cam_username
+    password: cam_password
+
+input_slider:
+  foscam_zoom:
+    name: Zoom
+    initial: 0
+    min: -5
+    max: 5
+    step: 1
+    icon: mdi:binoculars
+  foscam_up_down:
+    name: Move vertical
+    initial: 0
+    min: -5
+    max: 5
+    step: 1
+    icon: mdi:swap-vertical
+  foscam_left_right:
+    name: Move horizontal
+    initial: 0
+    min: -5
+    max: 5
+    step: 1
+    icon: mdi:swap-horizontal
+  foscam_hue:
+    name: Hue
+    initial: 50
+    min: 0
+    max: 100
+    step: 1
+    icon: mdi:atom
+  foscam_brightness:
+    name: Brightness
+    initial: 50
+    min: 0
+    max: 100
+    step: 1
+    icon: mdi:brightness-6
+  foscam_contrast:
+    name: Contrast
+    initial: 50
+    min: 0
+    max: 100
+    step: 1
+    icon: mdi:contrast-circle
+  foscam_saturation:
+    name: Saturation
+    initial: 50
+    min: 0
+    max: 100
+    step: 1
+    icon: mdi:brightness-7
+  foscam_sharpness:
+    name: Sharpness
+    initial: 50
+    min: 0
+    max: 100
+    step: 1
+    icon: mdi:image-filter
+
+# the preset points have to be created in the cam before use. use the same name on both places
+input_select:
+  foscam_preset_points:
+    name: Preset points
+    options:
+     - Terras
+     - Oprit
+     - dak
+     - straat
+     - bovenste
+     - onderste
+     - meest linkse
+     - meest rechtse
+    initial: Terras
+# the preset cruises also need to be created in the cam
+  foscam_preset_cruise:
+    name: Preset cruises
+    options:
+     - horizontal
+     - vertical
+     - terras_oprit
+     - oprit
+    initial: horizontal
+    
+input_boolean:
+  foscam_mirror:
+    name: Mirror picture
+    initial: off
+    icon: mdi:swap-horizontal
+  foscam_flip:
+    name: Flip picture
+    initial: off
+    icon: mdi:swap-vertical
+  foscam_motion_detect:
+    name: Motion detect on
+    initial: off
+    icon: mdi:radar
+  foscam_stop_cruise:
+    name: Stop cruise 
+    initial: off
+    icon: mdi:square
+  foscam_default_picture_settings:
+    name: Set default picture settings
+    initial: off
+    icon: mdi:settings
+  foscam_infrared:
+    name: Infrared
+    initial: off
+    icon: mdi:weather-night
+  foscam_auto_infrared:
+    name: Infrared automated
+    initial: off
+    icon: mdi:weather-night
+  foscam_snap_picture_now:
+    name: Take picture
+    initial: off
+    icon: mdi:record-rec
+
+groups:
+  foscamsettings:
+    name: Foscam
+    entities:
+      - input_boolean.foscam_snap_picture_now
+      - input_select.foscam_preset_points
+      - input_select.foscam_preset_cruise
+      - input_boolean.foscam_stop_cruise
+      - input_slider.foscam_up_down
+      - input_slider.foscam_left_right
+      - input_slider.foscam_zoom
+      - input_boolean.foscam_motion_detect
+      - sensor.foscam_motion
+      - sensor.foscam_sound_alarm
+      - sensor.foscam_recording
+  foscampicturesettings:
+    name: Foscam picture settings
+    entities:
+      - input_boolean.foscam_mirror
+      - input_boolean.foscam_flip
+      - input_slider.foscam_hue
+      - input_slider.foscam_brightness
+      - input_slider.foscam_contrast
+      - input_slider.foscam_saturation
+      - input_slider.foscam_sharpness
+      - input_boolean.foscam_default_picture_settings
+      - input_boolean.foscam_auto_infrared
+      - input_boolean.foscam_infrared
+  cams:
+    name: Cameras
+    view: yes
+    entities:
+      - group.foscamsettings
+      - group.foscampicturesettings
+      - camera.foscam_camera
+
