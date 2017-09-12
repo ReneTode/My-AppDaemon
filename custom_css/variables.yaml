@@ -20,3 +20,11 @@ vertical_input_slider_value_style: $style_title
 vertical_input_slider_slider_style: ""
 vertical_input_slider_widget_style: $background_style
 
+light_with_brightness_icon_on: mdi-lightbulb
+light_with_brightness_icon_off: mdi-lightbulb
+light_with_brightness_title_style: $style_title
+light_with_brightness_title2_style: $style_title2
+light_with_brightness_slider_style: ""
+light_with_brightness_widget_style: $background_style
+light_with_brightness_icon_style_active: $style_active
+light_with_brightness_icon_style_inactive: $style_inactive
