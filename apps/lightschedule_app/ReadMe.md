@@ -1,3 +1,3 @@
 ## 1 App for all your lightings.
 
-description follows shortly
+app is created in older appdaemon version
