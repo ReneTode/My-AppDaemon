@@ -1,5 +1,7 @@
 these are custom widgets for HADashboard
 
+![Alt text](custom_widgets.jpg)
+
 place the files in the directory /conf/custom_widgets
 edit in the skin the variables.yaml with the variables you can find in custom_css
 
