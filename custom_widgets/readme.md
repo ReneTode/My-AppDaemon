@@ -1,6 +1,6 @@
 ## these are custom widgets for HADashboard
 
-![Alt text](custom_widgets.jpg)
+![Alt text](custom_widgets_new.jpg)
 
 place the files in the directory /conf/custom_widgets
 use my custom skin waterdrops (to be found in custom css) or edit variables.yaml in your own or the default skin.
