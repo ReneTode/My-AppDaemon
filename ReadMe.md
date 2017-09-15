@@ -14,10 +14,13 @@ My apps, my helpfiles, all about AppDaemon for Home Assistant
 2) horizontal slider
 3) vertical slider
 4) lightswitch with brightness slider
+5) thermometer (fully customisable)
+6) radial (fully customisable)
 
 ## custom css
 
-1) file with variables for the custom widgets
+1) waterdrops skin
+2) variables.yaml extra variables for custom widgets 
 
 
 
