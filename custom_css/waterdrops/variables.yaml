@@ -320,6 +320,24 @@ light_with_brightness_widget_style: $background_style
 light_with_brightness_icon_style_active: $style_active
 light_with_brightness_icon_style_inactive: $style_inactive
 
+light_with_colorpicker_icon_on: mdi-lightbulb
+light_with_colorpicker_icon_off: mdi-lightbulb
+light_with_colorpicker_title_style: $style_title
+light_with_colorpicker_title2_style: $style_title2
+light_with_colorpicker_button_style: ""
+light_with_colorpicker_widget_style: $background_style
+light_with_colorpicker_icon_style_active: $style_active
+light_with_colorpicker_icon_style_inactive: $style_inactive
+
 radial_widget_style: "background: none"
 
 thermo_widget_style: "background: none"
+
+heater_icon_on: fa-fire
+heater_icon_off: fa-fire
+heater_title_style: $style_title
+heater_title2_style: $style_title2
+heater_slider_style: ""
+heater_widget_style: $background_style
+heater_icon_style_active: $style_active
+heater_icon_style_inactive: $style_inactive
