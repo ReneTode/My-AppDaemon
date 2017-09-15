@@ -14,8 +14,10 @@ My apps, my helpfiles, all about AppDaemon for Home Assistant
 2) horizontal slider
 3) vertical slider
 4) lightswitch with brightness slider
-5) thermometer (fully customisable)
-6) radial (fully customisable)
+5) lightswitch with colorpicker
+6) thermometer (fully customisable)
+7) radial (fully customisable)
+8) combination from switch and input_slider (heater)
 
 ## custom css
 
