@@ -18,7 +18,7 @@ to check if your cam is from group 1 give this url in your browser:
    http://CAM_IP:CAM_POORT/cgi-bin/CGIProxy.fcgi?cmd=getDevState&usr=YOUR_USER_NAME&pwd=YOUR_PWD
    
 if this gives back info then you can use the app with group 1 please contact me to add the camtype
-if that doesnt work you can check if your cam is from group 2
+if that doesnt work you can check if your cam is from group 2.
 to check if it is in that group use this url in your browser:
    http://CAM_IP:CAM_POORT/get_status.cgi?usr=YOUR_USER_NAME&pwd=YOUR_PWD
    
