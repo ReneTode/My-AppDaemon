@@ -2,38 +2,35 @@
 
 ## Cameratypes that work with this
 
-i made 3 groups of cams that work with this app, but only group 1 has full functionality.
+i created 2 groups of cams that work with this app, but only group 1 has full functionality.
 
-1) F19828P, F19828P V2, R2 
+1) F19828P, F19828P V2, F19928P, R2 
    cams that are PTZ and with infrared light controlled with type 2 CGI commands
-2) F18918, F18918W
-   cams that are PTZ and with infrared light controlled with type 1 CGI commands
-   these cams are older and have not all functionality
-3) C1 lite, C1 
+2) C1 lite, C1 
    no PTZ cams without infrared
    
-if your cam isnt here it would probably still work, but i dont know the type.
+if your cam isnt here it can still work, but i dont know the type.
 to check if your cam is from group 1 give this url in your browser:
 
    http://CAM_IP:CAM_POORT/cgi-bin/CGIProxy.fcgi?cmd=getDevState&usr=YOUR_USER_NAME&pwd=YOUR_PWD
    
 if this gives back info then you can use the app with group 1 please contact me to add the camtype.
 
-if that doesnt work you can check if your cam is from group 2.
-to check if it is in that group use this url in your browser:
-   http://CAM_IP:CAM_POORT/get_status.cgi?usr=YOUR_USER_NAME&pwd=YOUR_PWD
-   
+  
 ## Installation
 
-- this app can only be used with a working version from Appdaemon (for installation from appdaemon see: http://appdaemon.readthedocs.io/en/latest/index.html )
+- this app can only be used with a working version from Appdaemon (for installation from appdaemon see: http://appdaemon.readthedocs.io/en/latest/index.html ) it expects at least version 2.1.8
+- besides appdaemon you need to install the custom widgets new_input_slider and vertical_ipnput_slider if you want a full working dashboard you can find them here: https://github.com/ReneTode/My-AppDaemon/tree/master/custom_widgets
 - second requirement is untangle. to install untangle:
   pip3 install untangle
 - you need to have the camera added and working in homeassistant
   https://home-assistant.io/components/camera.foscam/
   
-if all requirements are there you can install the app.
+if all requirements are met you can install the app.
 - download the file foscam.py and move it to your app directory from appdaemon
-- in your apps.yaml create a new section with these arguments:
+- in your apps.yaml create a new section with these arguments: (can be found in add_to_apps.yaml)
+from version 0.55 homeassistant uses input_number instead of input_slider!!
+
 ```
 foscam:
   class: foscam
@@ -90,4 +87,6 @@ foscam:
     show_time: 30                          # the amount of seconds the alarm keeps active
 ```
 
-I am working on this it will be released in a shor while.
+
+you can chose to let the app recreate the dashboard every time you start the app or when you are satisfied with the dashboard, or want to customize it, then set create_dashboard to false after the first time.
+
