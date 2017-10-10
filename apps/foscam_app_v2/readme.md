@@ -1,5 +1,6 @@
 # This is an app to create controls for a foscam camera
 
+![Alt text](images/camera_new_skinless_release.jpg)
 ## Cameratypes that work with this
 
 i created 2 groups of cams that work with this app, but only group 1 has full functionality.
