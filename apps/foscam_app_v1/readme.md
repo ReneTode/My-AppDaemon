@@ -1,3 +1,6 @@
+## version 1 is only working with homeassistant 0.54 or lower!! (tested with appdaemon 2.1.8)
+
+
 version 1 is only for the new type foscam cameras.
 I am working on version 2 which also has support for older types.
 
