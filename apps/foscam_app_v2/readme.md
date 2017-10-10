@@ -33,6 +33,7 @@ if all requirements are met you can install the app.
 - download the file foscam.py and move it to your app directory from appdaemon
 - in your apps.yaml create a new section with these arguments: (can be found in add_to_apps.yaml)
 from version 0.55 homeassistant uses input_number instead of input_slider!!
+(the settings here are only to show which settings are there and to tell what they are for. please use the settings from the subdir for homeassistant 0.55 or 0.54)
 
 ```
 foscam:
