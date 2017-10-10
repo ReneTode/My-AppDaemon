@@ -27,7 +27,8 @@ if this gives back info then you can use the app with group 1 please contact me 
   pip3 install untangle
 - you need to have the camera added and working in homeassistant
   https://home-assistant.io/components/camera.foscam/
-  
+- create in homeassistant the entities you can find in the file add_to_ha_configuration (input_boolean, input_sliders oder numbers and groups)
+
 if all requirements are met you can install the app.
 - download the file foscam.py and move it to your app directory from appdaemon
 - in your apps.yaml create a new section with these arguments: (can be found in add_to_apps.yaml)
@@ -91,4 +92,9 @@ foscam:
 
 
 you can chose to let the app recreate the dashboard every time you start the app or when you are satisfied with the dashboard, or want to customize it, then set create_dashboard to false after the first time.
+
+if you have done everything right you now can start your dashboard like http://your_dashboard_ip:dashboard_poort/dashboard_file_name
+
+i welcome any feedback you can find discussion and help in this topic:
+https://community.home-assistant.io/t/foscam-app-v2-appdaemon-and-hadashboard/29270
 
