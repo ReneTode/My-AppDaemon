@@ -3,10 +3,11 @@ My apps, my helpfiles, all about AppDaemon for Home Assistant
 
 ## Apps
 
-1) Foscam V1 (an app for controlling a  foscam camera)
-2) Sound (tts and soundcontrol directly in the app)
-3) lightschedule (a clear view on when you turn on and off your lights)
-4) google assistant as app controlable drom home assistant
+1) Foscam V1 (an app for controlling a  foscam camera) for older versions from appdaemon and homeassistant
+2) Foscam V2 (the new version with automatic generated dashboards and better errors)
+3) Sound (tts and soundcontrol directly in the app)
+4) lightschedule (a clear view on when you turn on and off your lights)
+5) google assistant as app controlable drom home assistant
 
 ## custom Widgets for HADashboard
 
