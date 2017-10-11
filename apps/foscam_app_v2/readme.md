@@ -99,3 +99,6 @@ if you have done everything right you now can start your dashboard like http://y
 i welcome any feedback you can find discussion and help in this topic:
 https://community.home-assistant.io/t/foscam-app-v2-appdaemon-and-hadashboard/29270
 
+footnote: it is optional to set the dash_dir argument in appdaemon.yaml after installing appdaemon.
+but untill i found a better way that setting is needed. if you dont want it at another place then set your dash_dir to /full/path/to//conf/dashboards
+
