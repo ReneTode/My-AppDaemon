@@ -367,120 +367,134 @@ class foscam(appapi.AppDaemon):
       self.set_state(self.last_error_sensor, state = self.time().strftime("%H:%M:%S") + self.last_error)
 
 
+
   def create_dashboard(self):
     try:
-      dashboard = open(self.config["HADashboard"]["dash_dir"] + "/" + self.dashboardsettings["dashboard_file_name"] + ".dash", 'w')
-      screenwidth = self.dashboardsettings["screen_width"]
-      screenheight = self.dashboardsettings["screen_height"]
-      widgetwidth = round((screenwidth - 22) / 10)
-      widgetheight = round((screenheight - 14) / 6)
-      dashboardlines = [
-        'title: camera',
-        'widget_dimensions: [' + str(widgetwidth) + ', ' + str(widgetheight) + ']',
-        'widget_size: [1,1]',
-        'widget_margins: [2, 2]',
-        'columns: 10',
-        'global_parameters:',
-        '    use_comma: 1',
-        '    precision: 0',
-        '    use_hass_icon: 1',
-        '',
-        'layout:',
-        '    - my_camera(7x4), ' + self.saturation_slider + '(2x1), ' + self.flip_switch,
-        '    - ' + self.contrast_slider + '(2x1), ' + self.mirror_switch,
-        '    - ' + self.brightness_slider + '(2x1), ' + self.auto_infrared_switch,
-        '    - ' + self.hue_slider + '(2x1), ' + self.infrared_switch,
-        '    - ' + self.left_right_slider + '(2x1), ' + self.zoom_slider + '(1x2), ' + self.preset_points_select + '(2x1), ' + self.motion_sensor + ', ' + self.default_pic_settings_switch + ',' + self.sharpness_slider + '(2x1), ' + self.motion_switch,
-        '    - ' + self.up_down_slider + '(2x1), ' + self.start_cruise_select + '(2x1),' + self.recording_sensor + ', ' + self.soundalarm_sensor + ', ' + self.last_error_sensor + '(2x1), ' + self.snap_picture_switch,
-        '',
-        'my_camera:',
-        '    widget_type: camera',
-        '    entity_picture: ' + self.config["HASS"]["ha_url"] + '/api/camera_proxy_stream/camera.' + self.camera_name + '?api_password=' + self.config["HASS"]["ha_key"],
-        '    title: ' + self.camera_name,
-        '    refresh: 120',
-        self.recording_sensor + ':',
-        '    widget_type: sensor',
-        '    entity: ' + self.recording_sensor,
-        '    title: Recording',
-        self.motion_sensor + ':',
-        '    widget_type: sensor',
-        '    entity: ' + self.motion_sensor,
-        '    title: Motion',
-        self.soundalarm_sensor + ':',
-        '    widget_type: sensor',
-        '    entity: ' + self.soundalarm_sensor,
-        '    title: Sound alarm',
-        self.saturation_slider + ':',
-        '    widget_type: new_input_slider',
-        '    entity: ' + self.saturation_slider,
-        '    title: Saturation',
-        self.contrast_slider + ':',
-        '    widget_type: new_input_slider',
-        '    entity: ' + self.contrast_slider,
-        '    title: Contrast',
-        self.brightness_slider + ':',
-        '    widget_type: new_input_slider',
-        '    entity: ' + self.brightness_slider,
-        '    title: Brightness',
-        self.hue_slider + ':',
-        '    widget_type: new_input_slider',
-        '    entity: ' + self.hue_slider,
-        '    title: Hue',
-        self.sharpness_slider + ':',
-        '    widget_type: new_input_slider',
-        '    entity: ' + self.sharpness_slider,
-        '    title: Sharpness',
-        self.left_right_slider + ':',
-        '    widget_type: new_input_slider',
-        '    entity: ' + self.left_right_slider,
-        '    title: Move Left',
-        '    title2: Move Right',
-        self.up_down_slider + ':',
-        '    widget_type: new_input_slider',
-        '    entity: ' + self.up_down_slider,
-        '    title: Move Up(right)',
-        '    title2: Move Down(left)',
-        self.zoom_slider + ':',
-        '    widget_type: vertical_input_slider',
-        '    entity: ' + self.zoom_slider,
-        '    title: Zoom',
-
-      ]
-      for line in dashboardlines:
-        dashboard.write(line + '\n')
-      dashboard.close()
+      with open(self.config["HADashboard"]["dash_dir"] + "/" + self.dashboardsettings["dashboard_file_name"] + ".dash", 'w') as dashboard:
+        screenwidth = self.dashboardsettings["screen_width"]
+        screenheight = self.dashboardsettings["screen_height"]
+        widgetwidth = round((screenwidth - 22) / 10)
+        widgetheight = round((screenheight - 14) / 6)
+        dashboardlines = [
+          'title: camera',
+          'widget_dimensions: [' + str(widgetwidth) + ', ' + str(widgetheight) + ']',
+          'widget_size: [1,1]',
+          'widget_margins: [2, 2]',
+          'columns: 10',
+          'global_parameters:',
+          '    use_comma: 1',
+          '    precision: 0',
+          '    use_hass_icon: 1',
+          '',
+          'layout:',
+          '    - my_camera(7x4), ' + self.saturation_slider + '(2x1), ' + self.flip_switch,
+          '    - ' + self.contrast_slider + '(2x1), ' + self.mirror_switch,
+          '    - ' + self.brightness_slider + '(2x1), ' + self.auto_infrared_switch,
+          '    - ' + self.hue_slider + '(2x1), ' + self.infrared_switch,
+          '    - ' + self.left_right_slider + '(2x1), ' + self.zoom_slider + '(1x2), ' + self.preset_points_select + '(2x1), ' + self.motion_sensor + ', ' + self.default_pic_settings_switch + ',' + self.sharpness_slider + '(2x1), ' + self.motion_switch,
+          '    - ' + self.up_down_slider + '(2x1), ' + self.start_cruise_select + '(2x1),' + self.recording_sensor + ', ' + self.soundalarm_sensor + ', ' + self.last_error_sensor + '(2x1), ' + self.snap_picture_switch,
+          '',
+          'my_camera:',
+          '    widget_type: camera',
+          '    entity_picture: ' + self.config["HASS"]["ha_url"] + '/api/camera_proxy_stream/camera.' + self.camera_name + '?api_password=' + self.config["HASS"]["ha_key"],
+          '    title: ' + self.camera_name,
+          '    refresh: 120',
+          self.recording_sensor + ':',
+          '    widget_type: sensor',
+          '    entity: ' + self.recording_sensor,
+          '    title: Recording',
+          self.motion_sensor + ':',
+          '    widget_type: sensor',
+          '    entity: ' + self.motion_sensor,
+          '    title: Motion',
+          self.soundalarm_sensor + ':',
+          '    widget_type: sensor',
+          '    entity: ' + self.soundalarm_sensor,
+          '    title: Sound alarm',
+          self.saturation_slider + ':',
+          '    widget_type: new_input_slider',
+          '    entity: ' + self.saturation_slider,
+          '    title: Saturation',
+          self.contrast_slider + ':',
+          '    widget_type: new_input_slider',
+          '    entity: ' + self.contrast_slider,
+          '    title: Contrast',
+          self.brightness_slider + ':',
+          '    widget_type: new_input_slider',
+          '    entity: ' + self.brightness_slider,
+          '    title: Brightness',
+          self.hue_slider + ':',
+          '    widget_type: new_input_slider',
+          '    entity: ' + self.hue_slider,
+          '    title: Hue',
+          self.sharpness_slider + ':',
+          '    widget_type: new_input_slider',
+          '    entity: ' + self.sharpness_slider,
+          '    title: Sharpness',
+          self.left_right_slider + ':',
+          '    widget_type: new_input_slider',
+          '    entity: ' + self.left_right_slider,
+          '    title: Move Left',
+          '    title2: Move Right',
+          self.up_down_slider + ':',
+          '    widget_type: new_input_slider',
+          '    entity: ' + self.up_down_slider,
+          '    title: Move Up(right)',
+          '    title2: Move Down(left)',
+          self.zoom_slider + ':',
+          '    widget_type: vertical_input_slider',
+          '    entity: ' + self.zoom_slider,
+          '    title: Zoom',
+        ]
+        for line in dashboardlines:
+          dashboard.write(line + '\n')
+    except IOError as e:
+      self.log("I/O error({0}): {1} : dashboard couldnt be written".format(e.errno, e.strerror),"ERROR")
+      self.log("tried to write: " + self.config["HADashboard"]["dash_dir"] + "/" + self.dashboardsettings["dashboard_file_name"] + ".dash","ERROR")
+    except TypeError:
+      self.log("one of the arguments has the wrong type","ERROR")
+    except ValueError:
+      self.log("width or height isnt given as a correct integer","ERROR")
     except:
-      self.log("dashboard couldnt be written", "ERROR")
+      self.log("unexpected error: dashboard couldnt be written", "ERROR")
+      self.log("tried to write: " + self.config["HADashboard"]["dash_dir"] + "/" + self.dashboardsettings["dashboard_file_name"] + ".dash","ERROR")
 
 
   def create_alarm_dashboard(self):
     try:
-      dashboard = open(self.config["HADashboard"]["dash_dir"] + "/" + self.dashboardsettings["alarm_dashboard_file_name"] + ".dash", 'w')
-      screenwidth = self.dashboardsettings["screen_width"]
-      screenheight = self.dashboardsettings["screen_height"]
-      widgetwidth = round((screenwidth - 22) / 10)
-      widgetheight = round((screenheight - 14) / 6)
-      dashboardlines = [
-        'title: camera',
-        'widget_dimensions: [' + str(widgetwidth) + ', ' + str(widgetheight) + ']',
-        'widget_size: [1,1]',
-        'widget_margins: [2, 2]',
-        'columns: 10',
-        'global_parameters:',
-        '    use_comma: 1',
-        '    precision: 0',
-        '    use_hass_icon: 1',
-        '',
-        'layout:',
-        '    - my_camera(10x6)',
-        '',
-        'my_camera:',
-        '    widget_type: camera',
-        '    entity_picture: ' + self.config["HASS"]["ha_url"] + '/api/camera_proxy_stream/camera.' + self.camera_name + '?api_password=' + self.config["HASS"]["ha_key"],
-        '    title: ' + self.camera_name,
-      ]
-      for line in dashboardlines:
-        dashboard.write(line + '\n')
-      dashboard.close()
+      with open(self.config["HADashboard"]["dash_dir"] + "/" + self.dashboardsettings["alarm_dashboard_file_name"] + ".dash", 'w') as dashboard:
+        screenwidth = self.dashboardsettings["screen_width"]
+        screenheight = self.dashboardsettings["screen_height"]
+        widgetwidth = round((screenwidth - 22) / 10)
+        widgetheight = round((screenheight - 14) / 6)
+        dashboardlines = [
+          'title: camera',
+          'widget_dimensions: [' + str(widgetwidth) + ', ' + str(widgetheight) + ']',
+          'widget_size: [1,1]',
+          'widget_margins: [2, 2]',
+          'columns: 10',
+          'global_parameters:',
+          '    use_comma: 1',
+          '    precision: 0',
+          '    use_hass_icon: 1',
+          '',
+          'layout:',
+          '    - my_camera(10x6)',
+          '',
+          'my_camera:',
+          '    widget_type: camera',
+          '    entity_picture: ' + self.config["HASS"]["ha_url"] + '/api/camera_proxy_stream/camera.' + self.camera_name + '?api_password=' + self.config["HASS"]["ha_key"],
+          '    title: ' + self.camera_name,
+        ]
+        for line in dashboardlines:
+          dashboard.write(line + '\n')
+    except IOError as e:
+      self.log("I/O error({0}): {1} : dashboard couldnt be written".format(e.errno, e.strerror),"ERROR")
+      self.log("tried to write: " + self.config["HADashboard"]["dash_dir"] + "/" + self.dashboardsettings["alarm_dashboard_file_name"] + ".dash")
+    except TypeError:
+      self.log("one of the arguments has the wrong type","ERROR")
+    except ValueError:
+      self.log("width or height isnt given as a correct integer","ERROR")
     except:
-      self.log("alarm dashboard couldnt be written", "ERROR")
+      self.log("unexpected error: dashboard couldnt be written", "ERROR")
+      self.log("tried to write: " + self.config["HADashboard"]["dash_dir"] + "/" + self.dashboardsettings["alarm_dashboard_file_name"] + ".dash")
