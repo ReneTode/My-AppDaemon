@@ -30,7 +30,7 @@ Args! No again its not klingon language ;) Args is short for arguments. Good arg
 Just to give you an example: x + 1 = ?  
 I guess you cant give the answer right now. but you can if I tell you that x is 4, and also when I say that x = 67.  
 That's what we do with args.  
-In our python script we use **self.args["your_arg_name"] :one:** and then we can put those args in our cfg file.  
+In our python script we use **self.args["your_arg_name"] :one:** and then we can put those args in our apps.yaml file.  
 Note that this is not a function. A function would have the variables between () and here you use []. Actually that's not really important, but now you know why we don't use ()
 In our cfg file we could then put your_arg_name = Mr. Bean and in another part we could place your_argname = Queen Elisabeth.
 Off course we don't want to automate those people, but I learned that it sometimes helps to think of something weird to remember easy things.
@@ -51,23 +51,23 @@ we could rewrite that to:
 And then we would add
 
 ```
-lightID = light.some_light
+  lightID: light.some_light
 ```
 
-to our cfg file.
+to our apps.yaml file.
 And after that we could also use some_other_light without changing our app.
-In our cfg file we just make it like this:
+In our apps.yaml file we just make it like this:
 
 ```
-[some_light_on]  
-module = some_app  
-class = your_class_name  
-lightID = light.some_light  
+some_light_on:  
+  module: some_app  
+  class: your_class_name  
+  lightID: light.some_light  
 
-[some_other_light_on]  
-module = some_app  
-class = your_class_name  
-lightID = light.some_other_light  
+some_other_light_on:  
+  module: some_app  
+  class: your_class_name  
+  lightID: light.some_other_light  
 ```
 
 And later on you could add another light, and another...
@@ -141,19 +141,19 @@ O boy, I forgot something. We haven't saved our app yet. and therefor it hasn't 
 So now edit our cfg file and add these lines:
 
 ```
-[sun_down_some_light_on]
-module = sun_lights
-class = sun_down_lights
-sunset_offset = -3600
-sunrise_offset = 3600
-lightID = light.some_light
+sun_down_some_light_on:
+  module: sun_lights
+  class: sun_down_lights
+  sunset_offset: -3600
+  sunrise_offset: 3600
+  lightID: light.some_light
 
-[sun_down_some_other_light_on]
-module = sun_lights
-class = sun_down_lights
-sunset_offset = 0
-sunrise_offset = 0
-lightID = light.some_other_light
+sun_down_some_other_light_on
+  module: sun_lights
+  class: sun_down_lights
+  sunset_offset: 0
+  sunrise_offset: 0
+  lightID: light.some_other_light
 ```
 
 Just one small remark: offset is given in seconds.
