@@ -138,7 +138,7 @@ The first 1 hour before sunset until 1 hour after sunrise and the second from su
 
 O boy, I forgot something. We haven't saved our app yet. and therefor it hasn't got a name. Lets save it before we lose it and give it the name sun_lights.py
 
-So now edit our cfg file and add these lines:
+So now edit our apps.yaml file and add these lines:
 
 ```
 sun_down_some_light_on:
