@@ -197,9 +197,9 @@ Our app is ready to go. there is only 1 thing we need to do.
 We need to tell AppDaemon to use the app. For that we copy our app in the appdirectory we have set in the cfg file and we give it a name, lets say some_app.py  
 Then we make a part in the cfg file to tell AppDaemon to use the app like this:
 ```
-our_automation_name: any name you like.
-  module: some_app that was the name we used for our app
-  class: your_class_name and this was the name from our class
+our_automation_name:       #any name you like.
+  module: some_app         #that was the name we used for our app
+  class: your_class_name   #and this was the name from our class
 ```
  
 That's it. We made an app and we let AppDaemon use it. So go on! Make an input boolean in HA and let it put 1 of your lights on, but only if your mobile is home.
