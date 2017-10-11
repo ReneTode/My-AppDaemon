@@ -17,10 +17,10 @@ First off all I make sure I always see the output from my Appdaemon.
 Untill a short while ago I had Appdaemon running on my PC and I always had an Commandprompt window open with Appdaemon running. 
 Now it is running on my raspberry pi, but absolutely not as daemon. And thats because I want to see the output from Appdaemon directly.
 
-So I have my settings in the cfg file like this:
+So I have my settings in the appdaemon.yaml file like this:
 ```
-logfile = STDOUT
-errorfile = /home/pi/.homeassistant/error.log
+  logfile: STDOUT
+  errorfile: /home/pi/.homeassistant/error.log
 ```
  
 That gets my log entries to the screen and my errors to the file. If nothing goes wrong, the errorlog stays empty.
