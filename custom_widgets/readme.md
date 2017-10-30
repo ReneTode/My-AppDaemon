@@ -89,3 +89,25 @@ layout:
     
 ```
 
+#newest widget iconsensor
+
+the iconsensor let you show an icon for every value that an sensor can get.
+you can use it for weathersensor or for an input_select or any sensor you like with multiple states.
+in the dashboard you use it like this:
+
+```
+a_sensor_name:
+    widget_type: iconsensor
+    entity: sensor.your_sensor
+    title: your title
+    state_icons:
+      night: mdi-brightness-3
+      evening: mdi-sofa
+      cloudy: mdi-weather-cloudy
+      partly_cloudy: mdi-weather-partlycloudy
+      sunny: mdi-weather-sunny
+      morning: mdi-bike
+    widget_style: "border-radius: 30px" #or some other css
+    ```
+    
+
