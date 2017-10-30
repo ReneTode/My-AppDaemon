@@ -89,7 +89,7 @@ layout:
     
 ```
 
-## newest widget iconsensor
+## newest widget: iconsensor
 
 the iconsensor let you show an icon for every value that an sensor can get.
 you can use it for weathersensor or for an input_select or any sensor you like with multiple states.
@@ -108,6 +108,6 @@ a_sensor_name:
       sunny: mdi-weather-sunny
       morning: mdi-bike
     widget_style: "border-radius: 30px" #or some other css
-    ```
+```
     
 
