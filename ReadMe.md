@@ -19,6 +19,7 @@ My apps, my helpfiles, all about AppDaemon for Home Assistant
 6) thermometer (fully customisable)
 7) radial (fully customisable)
 8) combination from switch and input_slider (heater)
+9) icon sensor
 
 ## custom css
 
