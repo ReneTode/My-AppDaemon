@@ -4,7 +4,13 @@
 
 using this skin is really easy if you have appdaemon/hadashboard installed.
 all you need is a directory named custom_css in your conf(iguration) directory
-there you create the lcars directory with the files in it and you are good to go.
+there you create the lcars directory.
+in the lcars directory you need to place all files.
+- dashboard.css
+- variables.yaml
+- the subdir font with everything in it
+- the subdir img with everything in it
+
 if you want to use a calculated stardate the read how to do it below.
 
 the skin has a background that can be used with different resolutions.
