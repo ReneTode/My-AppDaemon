@@ -1,0 +1,207 @@
+###########################################
+# Dashboard settings                      #
+###########################################
+title: LCARS Panel
+widget_dimensions: [119, 23]
+widget_size: [1, 1]
+widget_margins: [7, 3]
+columns: 8
+rows: 50
+global_parameters:
+    use_comma: 0
+    precision: 1
+###########################################
+# Widgets                                 #
+###########################################
+# 6 buttonlike demo switches              #
+###########################################
+switch1:
+  widget_type: switch
+  entity: switch.yourswitch
+  title: switch 1
+  title_style: "$button_title_right"
+  widget_style: "$button_widget_left;background-color:$lcar_color_6"
+  icon_style_active: "$button_icon_active_left"
+switch2:
+  widget_type: switch
+  entity: switch.yourswitch2
+  title: switch 2
+  title_style: "$button_title_right"
+  widget_style: "$button_widget_left;background-color:$lcar_color_3"
+  icon_style_active: "$button_icon_active_left"
+switch3:
+  widget_type: switch
+  entity: switch.yourswitch3
+  title: switch 3
+  title_style: "$button_title_right"
+  widget_style: "$button_widget_left;background-color:$lcar_color_4"
+  icon_style_active: "$button_icon_active_left"
+switch4:
+  widget_type: switch
+  entity: switch.yourswitch4
+  title: switch 4
+  title_style: "$button_title_left"
+  widget_style: "$button_widget_right;background-color:$lcar_color_6"
+  icon_style_active: "$button_icon_active_right"
+switch5:
+  widget_type: switch
+  entity: switch.yourswitch5
+  title: switch 5
+  title_style: "$button_title_left"
+  widget_style: "$button_widget_right;background-color:$lcar_color_2"
+  icon_style_active: "$button_icon_active_right"
+switch6:
+  widget_type: switch
+  entity: switch.yourswitch6
+  title: Furniture
+  title_style: "$button_title_left"
+  widget_style: "$button_widget_right;background-color:$lcar_color_8"
+  icon_style_active: "$button_icon_active_right"
+###########################################
+# 2 buttonlike demo input_booleans        #
+###########################################
+input_boolean1:
+  widget_type: switch
+  entity: input_boolean.yourboolean
+  title: input boolean
+  title_style: "$button_title_right"
+  widget_style: "$button_widget_left;background-color:$lcar_color_2"
+  icon_style_active: "$button_icon_active_left"
+inputboolean2:
+  widget_type: switch
+  entity: input_boolean.yourboolean
+  title: input boolean 2
+  title_style: "$button_title_left"
+  widget_style: "$button_widget_right;background-color:$lcar_color_4"
+  icon_style_active: "$button_icon_active_right"
+###########################################
+# a label head above sensor values        #
+###########################################
+sensorhead:
+  widget_type: label
+  title: SENSOR VALUES
+  title_style: "$title_left;color:$lcar_color_4"
+###########################################
+# sensor values                           #
+###########################################
+livingtemp:
+  widget_type: sensor
+  entity: sensor.yourtemp
+  title: Living temperature
+  title_style: "$title_left"
+  container_style: "$sensor_value_container_right"
+  units: "C"
+kitchentemp:
+  widget_type: sensor
+  entity: sensor.yourtemp2
+  title: Kitchen temperature
+  title_style: "$title_left"
+  container_style: "$sensor_value_container_right"
+  units: "C"
+bedroomtemp:
+  widget_type: sensor
+  entity: sensor.yourtemp3
+  title: Bedroom temperature
+  title_style: "$title_left"
+  container_style: "$sensor_value_container_right"
+  units: "C"
+################################################
+# show switch (or any entity) states as sensor #
+################################################
+livingheater1:
+  widget_type: sensor
+  entity: switch.yourswitch
+  title: Living heater 1
+  title_style: "$title_left"
+  container_style: "$sensor_value_container_right"
+  units: ""
+livingheater2:
+  widget_type: sensor
+  entity: switch.yourswitch2
+  title: Living heater 2
+  title_style: "$title_left"
+  container_style: "$sensor_value_container_right"
+  units: ""
+
+################################################
+# use a camera                                 #
+################################################
+mycamera:
+  widget_type: camera
+  title: Captains seat
+  entity_picture: http://your_ip:8123/api/camera_proxy/camera.your_camera?api_password=your_password
+  widget_style: "background-image: none"
+  refresh: 60
+
+################################################
+# The basic widgets                            #
+################################################
+Dashboard_title:
+  widget_type: label
+  title: DASHBOARD
+  title_style: "$style_label_title_dashname"
+  widget_style: "background-color:$transparant"
+stardate:
+  widget_type: sensor
+  entity: sensor.stardate
+  text_style: "$style_sensor_value_stardate"
+  container_style: "top: 6px"              ##### the top can be changed for the screensize
+  widget_style: "background-color:$transparant"
+menutop:
+  widget_type: label
+  title: Menu
+  title_style: "$style_label_title_menu"
+  widget_style: "background-color:$lcar_color_7"
+menu1:
+  widget_type: navigate
+  title: Livingroom
+  dashboard: dash_agenda_algemeen
+  title_style: "$style_label_title_menu"
+  widget_style: "background-color:$lcar_color_5"
+menu2:
+  widget_type: navigate
+  title: Kitchen
+  dashboard: dash_keuken_tablet
+  title_style: "$style_label_title_menu"
+  widget_style: "background-color:$lcar_color_5"
+logo:
+  widget_type: iframe
+  widget_style: "border-bottom-left-radius: 30px;border-bottom-right-radius: 30px"
+  img_list: 
+    - http://192.168.178.26:5050/custom_css/lcars/img/acces_granted.jpg
+
+#############################################################
+# The layout.                                               #
+# buttons have a width from 1 and a height from 2, so (1x2) #
+# sensors have a width from 2 and a height from 1, so (2x1) #
+# dont change the first line or your title will be moved    #
+# dont change the amount of lines if you want to keep the   #
+# stardate in place. stardate is generated by the           #
+# stardate app                                              #
+#############################################################
+
+
+layout:
+  - spacer(1x2),            spacer(1x2),          spacer(1x2),         spacer(1x2),   spacer(1x2),         spacer(1x2),   Dashboard_title(2x2)
+  -
+  - spacer(1x2),            spacer(1x2),          spacer(1x2),         spacer(1x2),   spacer(1x2),         spacer(1x2),   logo(2x12) 
+  -
+  - menutop(1x2),           switch1(1x2),         switch4(1x2),        spacer,        sensorhead(2x1)         
+  -                                                                    spacer,        kitchentemp(2x1) 
+  - menu1(1x2),             switch2(1x2),         switch5(1x2),        spacer,        bedroomtemp(2x1)
+  -                                                                    spacer,        livingtemp(2x1)
+  - menu2(1x2),             switch3(1x2),         switch6(1x2),        spacer,        spacer(2x1)  
+  -                                                                    spacer,        livingheater1(2x1)
+  - spacer(1x2),            spacer(1x2),          spacer(1x2),         spacer,        livingheater2(2x1)
+  -
+  - spacer(1x2),            spacer(1x2),          spacer(1x2),         spacer(1x2),   spacer(1x2)
+  -
+  - spacer(1x2),            input_boolean1(1x2),  input_boolean2(1x2), spacer(1x2),   spacer(1x2),         spacer(1x2),   mycamera(2x6)
+  -
+  - spacer(1x2),            spacer(1x2),          spacer(1x2),         spacer(1x2),   spacer(1x2),         spacer(1x2)           
+  -
+  - 
+  - 
+  - 
+  - spacer(1x2),            spacer(1x2),          stardate(1x2)
+
