@@ -1,5 +1,7 @@
 # The LCARS skin for HADashboard
 
+![Alt text](lcars12.jpg)
+
 using this skin is really easy if you have appdaemon/hadashboard installed.
 all you need is a directory named custom_css in your conf(iguration) directory
 there you create the lcars directory with the files in it and you are good to go.
