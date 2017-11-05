@@ -145,7 +145,7 @@ stardate:
   widget_type: sensor
   entity: sensor.stardate
   text_style: "$style_sensor_value_stardate"
-  container_style: "top: 6px"              ##### the top can be changed for the screensize
+  container_style: "top: 18px"              ##### the top can be changed for the screensize
   widget_style: "background-color:$transparant"
 menutop:
   widget_type: label
