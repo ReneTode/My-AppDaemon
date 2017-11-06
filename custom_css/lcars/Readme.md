@@ -130,7 +130,7 @@ you can use 9 different default colors
 stardate:
   widget_type: sensor
   entity: sensor.stardate
-  text_style: "$style_sensor_value_stardate"
+  text_style: "$sensor_text_stardate"
   container_style: "top: 6px"
   widget_style: "background-color:$transparant"
 ```
@@ -173,12 +173,12 @@ there are 2 default labels:
 Dashboard_title:
   widget_type: label
   title: DASHBOARD
-  title_style: "$style_label_title_dashname"
+  title_style: "$label_title_dashname"
   widget_style: "background-color:$transparant"
 menutop:
   widget_type: label
   title: Menu
-  title_style: "$style_label_title_menu"
+  title_style: "$label_title_menu"
   widget_style: "background-color:$lcar_color_7"
 ```
 ## iframe
@@ -197,7 +197,7 @@ menu1:
   widget_type: navigate
   title: Livingroom
   dashboard: your_dashname
-  title_style: "$style_label_title_menu"
+  title_style: "$label_title_menu"
   widget_style: "background-color:$lcar_color_5"
 ```
 
