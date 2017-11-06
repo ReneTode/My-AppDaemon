@@ -65,10 +65,25 @@ to get the stardate at the right position
 - in dashboard.css change   **background-size: 1024px;** to 1600
 - in the dashboard use the settings:
 ```
-  widget_dimensions: [86, 35]
+  widget_dimensions: [186, 35]
   widget_margins: [11, 5]
 ```
   and change
+  ```
+stardate:
+  container_style: "top: 6px" #6px for 1024, 18px for 1280, 28px for 1600
+```
+to get the stardate at the right position
+
+## 1920 x 1080 (untested)
+- in variables.yaml set **screenwidth: 1024** to 1920
+- in dashboard.css change   **background-size: 1024px;** to 1920
+- in the dashboard use the settings:
+```
+  widget_dimensions: [223, 41]
+  widget_margins: [21, 8]
+```
+  and you might need to change
   ```
 stardate:
   container_style: "top: 6px" #6px for 1024, 18px for 1280, 28px for 1600
