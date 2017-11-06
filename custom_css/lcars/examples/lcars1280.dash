@@ -89,21 +89,21 @@ livingtemp:
   entity: sensor.yourtemp
   title: Living temperature
   title_style: "$title_left"
-  container_style: "$sensor_value_container_right"
+  container_style: "$sensor_container_right"
   units: "C"
 kitchentemp:
   widget_type: sensor
   entity: sensor.yourtemp2
   title: Kitchen temperature
   title_style: "$title_left"
-  container_style: "$sensor_value_container_right"
+  container_style: "$sensor_container_right"
   units: "C"
 bedroomtemp:
   widget_type: sensor
   entity: sensor.yourtemp3
   title: Bedroom temperature
   title_style: "$title_left"
-  container_style: "$sensor_value_container_right"
+  container_style: "$sensor_container_right"
   units: "C"
 ################################################
 # show switch (or any entity) states as sensor #
@@ -113,14 +113,14 @@ livingheater1:
   entity: switch.yourswitch
   title: Living heater 1
   title_style: "$title_left"
-  container_style: "$sensor_value_container_right"
+  container_style: "$sensor_container_right"
   units: ""
 livingheater2:
   widget_type: sensor
   entity: switch.yourswitch2
   title: Living heater 2
   title_style: "$title_left"
-  container_style: "$sensor_value_container_right"
+  container_style: "$sensor_container_right"
   units: ""
 
 ################################################
@@ -139,30 +139,30 @@ mycamera:
 Dashboard_title:
   widget_type: label
   title: DASHBOARD
-  title_style: "$style_label_title_dashname"
+  title_style: "$label_title_dashname"
   widget_style: "background-color:$transparant"
 stardate:
   widget_type: sensor
   entity: sensor.stardate
-  text_style: "$style_sensor_value_stardate"
+  text_style: "$sensor_text_stardate"
   container_style: "top: 18px"              ##### the top can be changed for the screensize
   widget_style: "background-color:$transparant"
 menutop:
   widget_type: label
   title: Menu
-  title_style: "$style_label_title_menu"
+  title_style: "$label_title_menu"
   widget_style: "background-color:$lcar_color_7"
 menu1:
   widget_type: navigate
   title: Livingroom
   dashboard: dash_agenda_algemeen
-  title_style: "$style_label_title_menu"
+  title_style: "$label_title_menu"
   widget_style: "background-color:$lcar_color_5"
 menu2:
   widget_type: navigate
   title: Kitchen
   dashboard: dash_keuken_tablet
-  title_style: "$style_label_title_menu"
+  title_style: "$label_title_menu"
   widget_style: "background-color:$lcar_color_5"
 logo:
   widget_type: iframe
