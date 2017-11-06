@@ -124,7 +124,18 @@ you can use 9 different default colors
 - $lcar_color_1 (default text color), $lcar_color_2, ... $lcar_color_8
 - $transparant (mainly for background)
 
-## sensor
+## sensor (2x1)
+- the specific stardate sensor
+```
+stardate:
+  widget_type: sensor
+  entity: sensor.stardate
+  text_style: "$style_sensor_value_stardate"
+  container_style: "top: 6px"
+  widget_style: "background-color:$transparant"
+```
+- normal sensors
+```
 sensorname:
   widget_type: sensor
   entity: switch.your_sensor
@@ -132,11 +143,12 @@ sensorname:
   title_style: "$title_left"
   container_style: "$sensor_container_right"
   units: ""
-## switch
+```
+## switch (1x2)
 - use button_title_left or button_title_right
 - use button_widget_right or button_widget_left
 - use button_icon_active_right or button_icon_active_left
-
+```
 switchname:
   widget_type: switch
   entity: switch.your_switch
@@ -144,5 +156,88 @@ switchname:
   title_style: "$button_title_left"
   widget_style: "$button_widget_right;background-color:$lcar_color_4"
   icon_style_active: "$button_icon_active_right"
+```
+## camera
+actualy not real different from the default skin
+```
+mycamera:
+  widget_type: camera
+  title: Captains seat
+  entity_picture: http://yourip:8123/api/camera_proxy/camera.yourcam?api_password=yourpassword
+  widget_style: "background-image: none"
+  refresh: 60
+```  
+## label (menusize (1x2))
+there are 2 default labels:
+```
+Dashboard_title:
+  widget_type: label
+  title: DASHBOARD
+  title_style: "$style_label_title_dashname"
+  widget_style: "background-color:$transparant"
+menutop:
+  widget_type: label
+  title: Menu
+  title_style: "$style_label_title_menu"
+  widget_style: "background-color:$lcar_color_7"
+```
+## iframe
+also use for the logo
+```
+logo:
+  widget_type: iframe
+  widget_style: "border-bottom-left-radius: 30px;border-bottom-right-radius: 30px"
+  img_list: 
+    - http://yourip:5050/custom_css/lcars/img/acces_granted.jpg
+```
+## navigate (menusize(1x2))
+used for the menu
+```
+menu1:
+  widget_type: navigate
+  title: Livingroom
+  dashboard: your_dashname
+  title_style: "$style_label_title_menu"
+  widget_style: "background-color:$lcar_color_5"
+```
+
+# Basic layout
+the layout needs to be created for the background.
+you can find examples for the most ordinairy resolutions.
+
+this is the most basic frame:
+```
+layout:
+  - spacer(1x2),  spacer(1x2),  spacer(1x2),  spacer(1x2),  spacer(1x2),  spacer(1x2),  Dashboard_title(2x2)
+  -
+  -
+  -
+  - menutop(1x2)       
+  -
+  - menu1(1x2)
+  - 
+  - menu2(1x2)
+  -
+  -
+  -
+  - 
+  -
+  - 
+  -
+  - 
+  -
+  - 
+  - 
+  - 
+  - spacer(1x2),  spacer(1x2),  stardate(1x2)
+  ```
+  
+  # support and ideas
+  
+  if you come to any problems, have any suggestions or if you have other questions:
+  https://community.home-assistant.io/t/skin-lcars-star-trek-beta/31386
+  
+
+
 
 
