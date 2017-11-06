@@ -25,6 +25,7 @@ My apps, my helpfiles, all about AppDaemon for Home Assistant
 
 1) waterdrops skin
 2) variables.yaml extra variables for custom widgets 
+3) LCARS skin
 
 
 
