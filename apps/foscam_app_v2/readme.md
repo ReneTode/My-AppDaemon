@@ -6,7 +6,7 @@
 
 i created 2 groups of cams that work with this app, but only group 1 has full functionality.
 
-1) F19828P, F19828P V2, F19928P, R2 
+1) F19828P, F19828P V2, F19928P, R2, F19821W V2 
    cams that are PTZ and with infrared light controlled with type 2 CGI commands
 2) C1 lite, C1 
    no PTZ cams without infrared
