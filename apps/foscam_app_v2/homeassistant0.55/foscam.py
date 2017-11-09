@@ -45,7 +45,7 @@ class foscam(appapi.AppDaemon):
       self.logsensorlevel = "INFO"
 
     self.knowntype = 0
-    self.knowntypes1 = ["F19828P","F19828P V2","R2","F19928P"]
+    self.knowntypes1 = ["F19828P","F19828P V2","R2","F19928P","F19821W V2"]
     self.knowntypes2 = ["C1 lite","C1"]
     self.knowntypes3 = ["F18918","F18918W"]
     self.camsettings = self.args["camsettings"]
