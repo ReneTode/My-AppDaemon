@@ -21,7 +21,7 @@ if this gives back info then you can use the app with group 1 please contact me 
   
 ## Installation
 
-- this app can only be used with a working version from Appdaemon (for installation from appdaemon see: http://appdaemon.readthedocs.io/en/latest/index.html ) it expects at least version 2.1.8
+- this app can only be used with a working version from Appdaemon (for installation from appdaemon see: http://appdaemon.readthedocs.io/en/latest/index.html ) it expects at least version 2.1.8. it also expects that you have set the setting dash_dir in appdaemon.yaml Default this is pointing to the dir /path/to/conf/dashboards if you didnt set it. But if you want this app to create dashboards it needs that setting. for more info about setting the dash_dir see the appdaemon documentation.
 - besides appdaemon you need to install the custom widgets new_input_slider and vertical_ipnput_slider if you want a full working dashboard you can find them here: https://github.com/ReneTode/My-AppDaemon/tree/master/custom_widgets
 - second requirement is untangle. to install untangle:
   pip3 install untangle
