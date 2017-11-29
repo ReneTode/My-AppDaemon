@@ -1,0 +1,13 @@
+a_group:
+  module: groups
+  class: create_group
+  name: any_name
+  device_type: sensor
+  entity_part: "any_part"
+  entities:
+    - sensor.any_entity
+  hidden: False
+  view: True
+  assumed_state: False
+  friendly_name: Last Updates
+  nested_view: True #creates a second group inside a viewed group   
