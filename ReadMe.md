@@ -8,6 +8,7 @@ My apps, my helpfiles, all about AppDaemon for Home Assistant
 3) Sound (tts and soundcontrol directly in the app)
 4) lightschedule (a clear view on when you turn on and off your lights)
 5) google assistant as app controlable drom home assistant
+6) groups 2.0 (an app to use wildcards for groups)
 
 ## custom Widgets for HADashboard
 
