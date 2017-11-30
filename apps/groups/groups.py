@@ -40,5 +40,5 @@ class create_group(appapi.AppDaemon):
     if not self.args["nested_view"]:
       self.set_state(name,state="on",attributes={"view": view,"hidden": hidden,"assumed_state": assumed_state,"friendly_name": friendly_name,"entity_id": entitylist})
     else:
-      self.set_state(name + "2",state="on",attributes={"view": "false","hidden": hidden,"assumed_state": assumed_state,"friendly_name": friendly_name,"entity_id": entitylist})
-      self.set_state(name,state="on",attributes={"view": "true","hidden": hidden,"assumed_state": assumed_state,"friendly_name": friendly_name,"entity_id": [name + "2"]})
+      self.set_state(name + "2",state="on",attributes={"view": False,"hidden": hidden,"assumed_state": assumed_state,"friendly_name": friendly_name,"entity_id": entitylist})
+      self.set_state(name,state="on",attributes={"view": True,"hidden": hidden,"assumed_state": assumed_state,"friendly_name": friendly_name,"entity_id": [name + "2"]})
