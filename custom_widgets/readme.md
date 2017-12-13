@@ -8,7 +8,7 @@ the lines to add can be found in here in custom_css/default/variables.yaml
 
 to activate the temperature and radial widgets you need to download canvas gauges that can be found here:
 https://github.com/Mikhus/canvas-gauges
-install that in the directory conf/custom_css/gauges
+install that in the directory conf/custom_css/gauge
 in the variables.yaml from my waterdropsskill are the lines that point to that lib.
 if you want to use them in your own skin then create these 2 lines:
 ```
