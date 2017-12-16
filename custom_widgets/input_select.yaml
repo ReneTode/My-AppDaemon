@@ -16,3 +16,4 @@ static_css:
   title2_style: $input_select_title2_style
   select_style: $input_select_select_style
   widget_style: $input_select_widget_style
+  selectcontainer_style: $input_select_container_style
