@@ -46,8 +46,8 @@ class foscam(appapi.AppDaemon):
 
     self.knowntype = 0
     self.knowntypes1 = ["F19828P","F19828P V2","R2","F19928P","F19821W V2"]
-    self.knowntypes2 = ["C1 lite","C1", "C1 V3"]
-    self.knowntypes3 = ["F18918","F18918W"]
+    self.knowntypes2 = ["C1", "C1 V3"]
+    self.knowntypes3 = ["C1 lite"]
     self.camsettings = self.args["camsettings"]
     self.picsettings = self.args["picsettings"]
     self.ptzsettings = self.args["ptzsettings"]
@@ -60,6 +60,9 @@ class foscam(appapi.AppDaemon):
       self.PTZ = True
       self.infraredcam = True
     elif self.type in self.knowntypes2:
+      self.PTZ = False
+      self.infraredcam = True
+    elif self.type in self.knowntypes3:
       self.PTZ = False
       self.infraredcam = False
     else:
