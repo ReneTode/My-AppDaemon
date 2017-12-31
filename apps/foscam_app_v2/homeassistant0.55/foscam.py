@@ -46,7 +46,7 @@ class foscam(appapi.AppDaemon):
 
     self.knowntype = 0
     self.knowntypes1 = ["F19828P","F19828P V2","R2","F19928P","F19821W V2"]
-    self.knowntypes2 = ["C1 lite","C1"]
+    self.knowntypes2 = ["C1 lite","C1", "C1 V3"]
     self.knowntypes3 = ["F18918","F18918W"]
     self.camsettings = self.args["camsettings"]
     self.picsettings = self.args["picsettings"]
@@ -298,11 +298,11 @@ class foscam(appapi.AppDaemon):
         hue = pic_settings.CGI_Result.hue.cdata 
         saturation = pic_settings.CGI_Result.saturation.cdata  
         sharpness = pic_settings.CGI_Result.sharpness.cdata
-        self.call_service("input_number/select_value", entity_id=(self.brightness_slider), value=brightness)
-        self.call_service("input_number/select_value", entity_id=(self.contrast_slider), value=contrast)
-        self.call_service("input_number/select_value", entity_id=(self.hue_slider), value=hue)
-        self.call_service("input_number/select_value", entity_id=(self.saturation_slider), value=saturation)
-        self.call_service("input_number/select_value", entity_id=(self.sharpness_slider), value=sharpness)  
+        self.call_service("input_number/set_value", entity_id=(self.brightness_slider), value=brightness)
+        self.call_service("input_number/set_value", entity_id=(self.contrast_slider), value=contrast)
+        self.call_service("input_number/set_value", entity_id=(self.hue_slider), value=hue)
+        self.call_service("input_number/set_value", entity_id=(self.saturation_slider), value=saturation)
+        self.call_service("input_number/set_value", entity_id=(self.sharpness_slider), value=sharpness)  
       except:
         self.my_log("image setting got wrong data", "WARNING")
 
@@ -318,7 +318,7 @@ class foscam(appapi.AppDaemon):
 
 
   def reset_after_a_second(self, kwargs):
-    self.call_service("input_number/select_value", entity_id=kwargs["entityname"], value="0")
+    self.call_service("input_number/set_value", entity_id=kwargs["entityname"], value="0")
 
 
   def send_command(self, command):
