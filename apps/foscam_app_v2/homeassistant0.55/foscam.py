@@ -122,6 +122,7 @@ class foscam(appapi.AppDaemon):
     self.url = "http://"+ self.camhost + ":" + str(self.portnr) + "/cgi-bin/CGIProxy.fcgi?&usr=" + self.user + "&pwd=" + self.password + "&cmd="
     self.listen_state(self.input_boolean_changed, self.mirror_switch, on_command="mirrorVideo&isMirror=1", off_command="mirrorVideo&isMirror=0", reset=False)
     self.listen_state(self.input_boolean_changed, self.flip_switch, on_command="flipVideo&isFlip=1", off_command="flipVideo&isFlip=0", reset=False)
+    self.listen_state(self.input_boolean_changed, self.motion_switch, on_command="setMotionDetectConfig&isEnable=1", off_command="setMotionDetectConfig&isEnable=0", reset=False)
     self.listen_state(self.pic_setting_input_slider_changed,self.brightness_slider,settingstype = "Brightness")
     self.listen_state(self.pic_setting_input_slider_changed,self.contrast_slider,settingstype = "Contrast")
     self.listen_state(self.pic_setting_input_slider_changed,self.hue_slider,settingstype = "Hue")
@@ -334,6 +335,9 @@ class foscam(appapi.AppDaemon):
     if "<result>0</result>" in data:
       self.my_log(" Camera state ok", "INFO")
       return data
+    elif ("<result>-1</result>" in data and "setMotion" in command):
+      self.my_log(" Camera state ok", "INFO")
+      return "<result>0</result>"
     elif "<result>-1</result>" in data:
       self.my_log(" String format error", "WARNING")
       self.log(self.url + command)
