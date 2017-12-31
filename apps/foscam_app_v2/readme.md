@@ -1,5 +1,8 @@
 # This is an app to create controls for a foscam camera
 
+from 2018/1/1 i dont support HA versions below 0.55 anymore because of the breaking changes and i have moved to 0.60
+changes, improvement and bug removal is only done in the V@ for 0.55 and higher.
+
 ![Alt text](images/camera_new_skinless_release.jpg)
 ![Alt text](images/foscam_main_settings.jpg)![Alt text](images/foscam_picture_settings.jpg)
 ## Cameratypes that work with this
