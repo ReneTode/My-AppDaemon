@@ -21,22 +21,26 @@ to check if your cam is from group 1 give this url in your browser:
 
    http://CAM_IP:CAM_POORT/cgi-bin/CGIProxy.fcgi?cmd=getDevState&usr=YOUR_USER_NAME&pwd=YOUR_PWD
    
-if this gives back info then you can use the app with group 1 please contact me to add the camtype.
+if this gives back info then you can use the app. please contact me to add the camtype.
 
   
 ## Installation
 
 - this app can only be used with a working version from Appdaemon (for installation from appdaemon see: http://appdaemon.readthedocs.io/en/latest/index.html ) it expects at least version 2.1.8. it also expects that you have set the setting dash_dir in appdaemon.yaml Default this is pointing to the dir /path/to/conf/dashboards if you didnt set it. But if you want this app to create dashboards it needs that setting. for more info about setting the dash_dir see the appdaemon documentation.
 - besides appdaemon you need to install the custom widgets new_input_slider and vertical_ipnput_slider if you want a full working dashboard you can find them here: https://github.com/ReneTode/My-AppDaemon/tree/master/custom_widgets
-- second requirement is untangle. to install untangle:
-  pip3 install untangle
+- second requirement is untangle.
+  untangle will be automaticly installed the first time you start the app.
+  known problem with that:
+    permission error:
+      - use sudo to start appdaemon or
+      - manually install untangle with 'sudo pip3 install untangle'
 - you need to have the camera added and working in homeassistant
   https://home-assistant.io/components/camera.foscam/
 - create in homeassistant the entities you can find in the file add_to_ha_configuration (input_boolean, input_sliders oder numbers and groups)
 
 if all requirements are met you can install the app.
 - download the file foscam.py and move it to your app directory from appdaemon
-- in your apps.yaml create a new section with these arguments: (can be found in add_to_apps.yaml)
+- in your apps.yaml create a new section with these arguments: (example can be found in add_to_apps.yaml)
 from version 0.55 homeassistant uses input_number instead of input_slider!!
 (the settings here are only to show which settings are there and to tell what they are for. please use the settings from the subdir for homeassistant 0.55 or 0.54)
 
@@ -56,22 +60,22 @@ foscam:
     logsensorlevel: WARNING                # the app creates a sensor with the last info. level can be changed
     last_error_sensor: sensor.foscam_last_error # the sensor is created automaticly
   picsettings:                             # these settings need to be created in home assistant (see below)
-    brightness_slider: input_slider.foscam_brightness 
-    contrast_slider: input_slider.foscam_contrast
-    hue_slider: input_slider.foscam_hue
-    saturation_slider: input_slider.foscam_saturation
-    sharpness_slider: input_slider.foscam_sharpness
+    brightness_slider: input_number.foscam_brightness 
+    contrast_slider: input_number.foscam_contrast
+    hue_slider: input_number.foscam_hue
+    saturation_slider: input_number.foscam_saturation
+    sharpness_slider: input_number.foscam_sharpness
     default_pic_settings_switch: input_boolean.foscam_default_picture_settings
     flip_switch: input_boolean.foscam_flip
     mirror_switch: input_boolean.foscam_mirror
     auto_infrared_switch: input_boolean.foscam_auto_infrared
     infrared_switch: input_boolean.foscam_infrared
   ptzsettings:                             # these settings need to be created in home assistant (see below)
-    left_right_slider: input_slider.foscam_left_right
-    up_down_slider: input_slider.foscam_up_down
+    left_right_slider: input_number.foscam_left_right
+    up_down_slider: input_number.foscam_up_down
     start_cruise_select: input_select.foscam_preset_cruise
     stop_cruise_switch: input_boolean.foscam_stop_cruise
-    zoom_slider: input_slider.foscam_zoom
+    zoom_slider: input_number.foscam_zoom
     preset_points_select: input_select.foscam_preset_points
   alarmsettings:
     motion_sensor: sensor.foscam_motion    # the sensor is created automaticly
@@ -105,5 +109,5 @@ i welcome any feedback you can find discussion and help in this topic:
 https://community.home-assistant.io/t/foscam-app-v2-appdaemon-and-hadashboard/29270
 
 footnote: it is optional to set the dash_dir argument in appdaemon.yaml after installing appdaemon.
-but untill i found a better way that setting is needed. if you dont want it at another place then set your dash_dir to /full/path/to//conf/dashboards
+but untill i found a better way that setting is needed. if you dont want it at another place then set your dash_dir to /full/path/to/conf/dashboards
 
