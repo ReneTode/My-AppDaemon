@@ -1,4 +1,4 @@
-2.0 
+2.0 (2017/9/1)
   - complete rewrite from version 1
 
 2.0.1 (2018/1/1)
