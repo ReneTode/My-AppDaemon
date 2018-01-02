@@ -19,6 +19,7 @@ import urllib.request
 from socket import timeout
 import time
 import xml.etree.ElementTree as ET
+import requests
 
 class foscam(appapi.AppDaemon):
 
@@ -210,7 +211,6 @@ class foscam(appapi.AppDaemon):
       else:
         self.turn_on(self.auto_infrared_switch)
 
-
   def motiondetect_boolean_changed(self, entity, attribute, old, new, kwargs):   
     if self.setmotiondetect == "disabled":
       self.my_log(" Changing motion detect is disabled", "WARNING")
@@ -362,9 +362,8 @@ class foscam(appapi.AppDaemon):
 
   def send_command(self, command):
     try:
-      with urlopen(self.url + command, timeout=10) as response:
-        tree = ET.parse(response)
-        data = tree.getroot()
+      response =requests.get(self.url + command,timeout=10)
+      data= ET.fromstring(response.content)
     except timeout:
       self.my_log(" Camera took more then 10 seconds", "WARNING")
       return ""
