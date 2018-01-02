@@ -10,4 +10,5 @@
 2.0.2 (2018/1/2)
   - changed from untangle to xml.etree
   - moved flip and mirror check to initialize
+  - changed from urllib to requests for performance reason
   
