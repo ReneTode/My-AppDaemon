@@ -209,36 +209,11 @@ class foscam(appapi.AppDaemon):
         self.turn_off(self.auto_infrared_switch)
       else:
         self.turn_on(self.auto_infrared_switch)
-    data = self.send_command("getMirrorAndFlipSetting")
-    if data == "":
-      return
-    mirrorstate = data.find("isMirror").text  
-    if mirrorstate == "0":
-      self.turn_off(self.mirror_switch)
-    else:
-      self.turn_on(self.mirror_switch)
-    flipstate = data.find("isFlip").text  
-    if flipstate == "0":
-      self.turn_off(self.flip_switch)
-    else:
-      self.turn_on(self.flip_switch)
-    data = self.send_command("getMotionDetectConfig")
-    if data == "":
-      return
-    if data.find("isEnable").text == "0" and self.motionsettings=={}:
-      self.setmotiondetect = "disabled"
-      self.my_log(" I cant read motion detect settings, motion detect switch disabled", "WARNING")     
-      return
-    elif data.find("isEnable").text == "0":
-      return
-    else:
-      for child in data:
-        if child.tag != "result":
-          self.motionsettings[child.tag] = child.text
+
 
   def motiondetect_boolean_changed(self, entity, attribute, old, new, kwargs):   
     if self.setmotiondetect == "disabled":
-      self.my_log(" Changing motion detect is disabled", "INFO")
+      self.my_log(" Changing motion detect is disabled", "WARNING")
       return
     else:
       if new == "on":
@@ -341,7 +316,35 @@ class foscam(appapi.AppDaemon):
         self.call_service("input_number/set_value", entity_id=(self.sharpness_slider), value=sharpness)  
       except:
         self.my_log("image setting got wrong data", "WARNING")
-
+      data = self.send_command("getMirrorAndFlipSetting")
+      if data == "":
+        self.my_log("mirror and flipstate couldnt be read", "WARNING")
+      else:
+        mirrorstate = data.find("isMirror").text  
+        if mirrorstate == "0":
+          self.turn_off(self.mirror_switch)
+        else:
+          self.turn_on(self.mirror_switch)
+        flipstate = data.find("isFlip").text  
+        if flipstate == "0":
+          self.turn_off(self.flip_switch)
+        else:
+          self.turn_on(self.flip_switch)
+      data = self.send_command("getMotionDetectConfig")
+      if data == "":
+        self.my_log("motiondata couldnt be read", "WARNING")
+      else:
+        if data.find("isEnable").text == "0" and self.motionsettings=={}:
+          if self.setmotiondetect == "enabled":
+            self.setmotiondetect = "disabled"
+            self.my_log(" I cant read motion detect settings, motion detect switch disabled", "WARNING")     
+          return
+        elif data.find("isEnable").text == "0":
+          return
+        else:
+          for child in data:
+            if child.tag != "result":
+              self.motionsettings[child.tag] = child.text
 
   def snap_picture(self, entity, attribute, old, new, kwargs):
     if new == "on":
@@ -368,9 +371,11 @@ class foscam(appapi.AppDaemon):
     if data[0].text == "0":
       self.my_log(" Camera state ok", "INFO")
       return data
-    elif (data[0].text == "-1" in data and "setMotion" in command):
+    elif (data[0].text == "-1" and "setMotion" in command):
       self.my_log(" Camera state ok", "INFO")
-      return "<result>0</result>"
+      tree = ET.parse("<result>0</result>")
+      data = tree.getroot()
+      return data
     elif data[0].text == "-1":
       self.my_log(" String format error", "WARNING")
       self.log(self.url + command)
