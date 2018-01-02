@@ -5,8 +5,6 @@
 #  2017/10/10 Germany                                                                     #
 #                                                                                         #
 #  an app to control a foscam camera.                                                     #
-#  dependecies:                                                                           #
-#    untangle (pip install untangle)                                                      #
 #                                                                                         #
 #  args:                                                                                  #
 #  see the readme on                                                                      #
@@ -16,15 +14,16 @@
 
 import appdaemon.appapi as appapi
 import datetime
-import untangle
 from urllib.request import urlopen
 import urllib.request
 from socket import timeout
 import time
+import xml.etree.ElementTree as ET
 
 class foscam(appapi.AppDaemon):
 
   def initialize(self):
+
     runtime = datetime.datetime.now() + datetime.timedelta(seconds=5)
     self.loglevels = {
         "CRITICAL": 50,
@@ -48,13 +47,8 @@ class foscam(appapi.AppDaemon):
     self.knowntypes1 = ["F19828P","F19828P V2","R2","F19928P","F19821W V2"]
     self.knowntypes2 = ["C1", "C1 V3"]
     self.knowntypes3 = ["C1 lite"]
+ 
     self.camsettings = self.args["camsettings"]
-    self.picsettings = self.args["picsettings"]
-    self.ptzsettings = self.args["ptzsettings"]
-    self.alarmsettings = self.args["alarmsettings"]
-    self.recordsettings = self.args["recordsettings"]
-    self.dashboardsettings = self.args["dashboardsettings"]
-
     self.type = self.camsettings["camera_type"]
     if self.type in self.knowntypes1:
       self.PTZ = True
@@ -68,6 +62,13 @@ class foscam(appapi.AppDaemon):
     else:
       self.log("unknown camera type. try 1 of the known types, and if it works please report back on the forum")
       return
+
+    self.picsettings = self.args["picsettings"]
+    self.alarmsettings = self.args["alarmsettings"]
+    self.recordsettings = self.args["recordsettings"]
+    self.dashboardsettings = self.args["dashboardsettings"]
+    if self.PTZ:
+      self.ptzsettings = self.args["ptzsettings"]
 
     try:
       self.camhost = self.camsettings["host"]
@@ -120,9 +121,11 @@ class foscam(appapi.AppDaemon):
 
     self.listen_state(self.snap_picture,self.snap_picture_switch)
     self.url = "http://"+ self.camhost + ":" + str(self.portnr) + "/cgi-bin/CGIProxy.fcgi?&usr=" + self.user + "&pwd=" + self.password + "&cmd="
-    self.listen_state(self.input_boolean_changed, self.mirror_switch, on_command="mirrorVideo&isMirror=1", off_command="mirrorVideo&isMirror=0", reset=False)
+    self.listen_state(self.motiondetect_boolean_changed, self.motion_switch, on_command="setMotionDetectConfig&isEnable=1", off_command="setMotionDetectConfig&isEnable=0", reset=False)
+    self.motionsettings = {}
+    self.setmotiondetect = "enabled"
     self.listen_state(self.input_boolean_changed, self.flip_switch, on_command="flipVideo&isFlip=1", off_command="flipVideo&isFlip=0", reset=False)
-    self.listen_state(self.input_boolean_changed, self.motion_switch, on_command="setMotionDetectConfig&isEnable=1", off_command="setMotionDetectConfig&isEnable=0", reset=False)
+    self.listen_state(self.input_boolean_changed, self.flip_switch, on_command="flipVideo&isFlip=1", off_command="flipVideo&isFlip=0", reset=False)
     self.listen_state(self.pic_setting_input_slider_changed,self.brightness_slider,settingstype = "Brightness")
     self.listen_state(self.pic_setting_input_slider_changed,self.contrast_slider,settingstype = "Contrast")
     self.listen_state(self.pic_setting_input_slider_changed,self.hue_slider,settingstype = "Hue")
@@ -157,9 +160,8 @@ class foscam(appapi.AppDaemon):
     data = self.send_command("getDevState")
     if data == "":
       return
-    DevState = untangle.parse(data)
     try:
-      motion_alarm = DevState.CGI_Result.motionDetectAlarm.cdata  
+      motion_alarm = data.find("motionDetectAlarm").text  
       if motion_alarm == "0":
         motion_alarm_text = "Disabled"
       elif motion_alarm == "1":
@@ -167,7 +169,7 @@ class foscam(appapi.AppDaemon):
       elif motion_alarm == "2":
         motion_alarm_text = "Alarm!"
 
-      sound_alarm = DevState.CGI_Result.soundAlarm.cdata  
+      sound_alarm = data.find("soundAlarm").text  
       if sound_alarm == "0":
         sound_alarm_text = "Disabled"
       elif sound_alarm == "1":
@@ -175,12 +177,13 @@ class foscam(appapi.AppDaemon):
       elif sound_alarm == "2":
         sound_alarm_text = "Alarm!"
 
-      recording = DevState.CGI_Result.record.cdata  
+      recording = data.find("record").text  
       if recording == "0":
         recording_text = "No"
       elif recording == "1":
         recording_text = "Yes"
-      infrared = DevState.CGI_Result.infraLedState.cdata  
+      if self.infraredcam:
+        infrared = data.find("infraLedState").text  
 
       self.set_state(self.motion_sensor,state = motion_alarm_text)
       self.set_state(self.soundalarm_sensor,state = sound_alarm_text)
@@ -189,38 +192,68 @@ class foscam(appapi.AppDaemon):
         self.turn_off(self.motion_switch)
       else:
         self.turn_on(self.motion_switch)
-      if infrared == "0":
-        self.turn_off(self.infrared_switch)
-      else:
-        self.turn_on(self.infrared_switch)
+      if self.infraredcam:
+        if infrared == "0":
+          self.turn_off(self.infrared_switch)
+        else:
+          self.turn_on(self.infrared_switch)
     except:
       self.my_log(" Unexpected error", "WARNING")
       self.log(data, level = "WARNING")
-    data = self.send_command("getInfraLedConfig")
-    if data == "":
-      return
-    DevState = untangle.parse(data)
-    infraredstate = DevState.CGI_Result.mode.cdata  
-    if infraredstate == "1":
-      self.turn_off(self.auto_infrared_switch)
-    else:
-      self.turn_on(self.auto_infrared_switch)
+    if self.infraredcam:
+      data = self.send_command("getInfraLedConfig")
+      if data == "":
+        return
+      infraredstate = data.find("mode").text  
+      if infraredstate == "1":
+        self.turn_off(self.auto_infrared_switch)
+      else:
+        self.turn_on(self.auto_infrared_switch)
     data = self.send_command("getMirrorAndFlipSetting")
     if data == "":
       return
-    DevState = untangle.parse(data)
-    mirrorstate = DevState.CGI_Result.isMirror.cdata  
+    mirrorstate = data.find("isMirror").text  
     if mirrorstate == "0":
       self.turn_off(self.mirror_switch)
     else:
       self.turn_on(self.mirror_switch)
-    flipstate = DevState.CGI_Result.isFlip.cdata  
+    flipstate = data.find("isFlip").text  
     if flipstate == "0":
       self.turn_off(self.flip_switch)
     else:
       self.turn_on(self.flip_switch)
+    data = self.send_command("getMotionDetectConfig")
+    if data == "":
+      return
+    if data.find("isEnable").text == "0" and self.motionsettings=={}:
+      self.setmotiondetect = "disabled"
+      self.my_log(" I cant read motion detect settings, motion detect switch disabled", "WARNING")     
+      return
+    elif data.find("isEnable").text == "0":
+      return
+    else:
+      for child in data:
+        if child.tag != "result":
+          self.motionsettings[child.tag] = child.text
 
+  def motiondetect_boolean_changed(self, entity, attribute, old, new, kwargs):   
+    if self.setmotiondetect == "disabled":
+      self.my_log(" Changing motion detect is disabled", "INFO")
+      return
+    else:
+      if new == "on":
+        command = kwargs["on_command"]
+        for setting,value in self.motionsettings.items():
+          command = command + "&" + setting + "=" + value
+        data = self.send_command(command)
+      else:
+        data = self.send_command(kwargs["off_command"])
+      if data[0].text == "0":
+        self.my_log(" Changed " + self.friendly_name(entity), "INFO")
+      else: 
+        self.my_log("Failed to change " + self.friendly_name(entity), "WARNING")
 
+    
   def input_boolean_changed(self, entity, attribute, old, new, kwargs):   
     if new == "on":
       data = self.send_command(kwargs["on_command"])
@@ -229,7 +262,7 @@ class foscam(appapi.AppDaemon):
         data = self.send_command(kwargs["off_command"])
       else:
         return
-    if "<result>0</result>" in data:
+    if data[0].text == "0":
       self.my_log(" Changed " + self.friendly_name(entity), "INFO")
     else: 
       self.my_log("Failed to change " + self.friendly_name(entity), "WARNING")
@@ -239,7 +272,7 @@ class foscam(appapi.AppDaemon):
 
   def input_select_changed(self, entity, attribute, old, new, kwargs):   
     data = self.send_command(kwargs["on_command"] + new)
-    if "<result>0</result>" in data:
+    if data[0].text == "0":
       self.my_log("Changed " + self.friendly_name(entity),"INFO")
     else: 
       self.my_log("Failed to change " + self.friendly_name(entity), "WARNING")
@@ -251,7 +284,7 @@ class foscam(appapi.AppDaemon):
     data2 = ""
     if float(new) == 0:
       data0 = self.send_command(kwargs["stop_command"])
-      if "<result>0</result>" in data0:
+      if data0[0].text == "0":
         self.my_log("Stopped" + self.friendly_name(entity), "INFO")
       elif data0 == "": 
         self.my_log("Failed to stop " + self.friendly_name(entity), "WARNING")
@@ -267,13 +300,13 @@ class foscam(appapi.AppDaemon):
       self.run_in(self.reset_after_a_second,1,entityname=entity)
 
     if float(new) != 0:
-      if "<result>0</result>" in data1:
+      if data1[0].text == "0":
         self.my_log("Speed set", "INFO")
       elif data1 == "": 
         self.my_log("Failed to set speed", "WARNING")
       else:
         self.log(data1)
-      if "<result>0</result>" in data2:
+      if data2[0].text == "0":
         self.my_log("Started " + self.friendly_name(entity), "INFO")
       elif data2 == "": 
         self.my_log("Failed to start " + self.friendly_name(entity), "WARNING")
@@ -296,12 +329,11 @@ class foscam(appapi.AppDaemon):
         self.my_log("Failed to get settingsdata", "WARNING")
         return
       try:     
-        pic_settings = untangle.parse(data)
-        brightness = pic_settings.CGI_Result.brightness.cdata 
-        contrast = pic_settings.CGI_Result.contrast.cdata  
-        hue = pic_settings.CGI_Result.hue.cdata 
-        saturation = pic_settings.CGI_Result.saturation.cdata  
-        sharpness = pic_settings.CGI_Result.sharpness.cdata
+        brightness = data.find("brightness").text 
+        contrast = data.find("contrast").text  
+        hue = data.find("hue").text  
+        saturation = data.find("saturation").text  
+        sharpness = data.find("sharpness").text 
         self.call_service("input_number/set_value", entity_id=(self.brightness_slider), value=brightness)
         self.call_service("input_number/set_value", entity_id=(self.contrast_slider), value=contrast)
         self.call_service("input_number/set_value", entity_id=(self.hue_slider), value=hue)
@@ -328,37 +360,38 @@ class foscam(appapi.AppDaemon):
   def send_command(self, command):
     try:
       with urlopen(self.url + command, timeout=10) as response:
-        data = response.read().decode()
+        tree = ET.parse(response)
+        data = tree.getroot()
     except timeout:
       self.my_log(" Camera took more then 10 seconds", "WARNING")
       return ""
-    if "<result>0</result>" in data:
+    if data[0].text == "0":
       self.my_log(" Camera state ok", "INFO")
       return data
-    elif ("<result>-1</result>" in data and "setMotion" in command):
+    elif (data[0].text == "-1" in data and "setMotion" in command):
       self.my_log(" Camera state ok", "INFO")
       return "<result>0</result>"
-    elif "<result>-1</result>" in data:
+    elif data[0].text == "-1":
       self.my_log(" String format error", "WARNING")
       self.log(self.url + command)
       return ""
-    elif "<result>-2</result>" in data:
+    elif data[0].text == "-2":
       self.my_log(" Username or password error", "WARNING")
       return ""
-    elif "<result>-3</result>" in data:
+    elif data[0].text == "-3":
       self.my_log(" Access denied", "WARNING")
       return ""
-    elif "<result>-4</result>" in data:
+    elif data[0].text == "-4":
       self.my_log(" CGI execute failed", "WARNING")
       return ""
-    elif "<result>-5</result>" in data:
+    elif data[0].text == "-5" in data:
       self.my_log(" Timeout", "WARNING")
       return ""
     else:
       self.my_log(" Unknown error", "WARNING")
       return ""
 
-        
+       
   def toondash(self, entity, attribute, old, new, kwargs):
     timegoneby = datetime.datetime.now() - self.lastshown
     if new == "Alarm!" and timegoneby > datetime.timedelta(seconds=self.dashboardsettings["time_between_shows"]):
@@ -374,7 +407,6 @@ class foscam(appapi.AppDaemon):
       self.set_state(self.last_error_sensor, state = self.time().strftime("%H:%M:%S") + self.last_error)
 
 
-
   def create_dashboard(self):
     try:
       with open(self.config["HADashboard"]["dash_dir"] + "/" + self.dashboardsettings["dashboard_file_name"] + ".dash", 'w') as dashboard:
@@ -382,77 +414,196 @@ class foscam(appapi.AppDaemon):
         screenheight = self.dashboardsettings["screen_height"]
         widgetwidth = round((screenwidth - 22) / 10)
         widgetheight = round((screenheight - 14) / 6)
-        dashboardlines = [
-          'title: camera',
-          'widget_dimensions: [' + str(widgetwidth) + ', ' + str(widgetheight) + ']',
-          'widget_size: [1,1]',
-          'widget_margins: [2, 2]',
-          'columns: 10',
-          'global_parameters:',
-          '    use_comma: 1',
-          '    precision: 0',
-          '    use_hass_icon: 1',
-          '',
-          'layout:',
-          '    - my_camera(7x4), ' + self.saturation_slider + '(2x1), ' + self.flip_switch,
-          '    - ' + self.contrast_slider + '(2x1), ' + self.mirror_switch,
-          '    - ' + self.brightness_slider + '(2x1), ' + self.auto_infrared_switch,
-          '    - ' + self.hue_slider + '(2x1), ' + self.infrared_switch,
-          '    - ' + self.left_right_slider + '(2x1), ' + self.zoom_slider + '(1x2), ' + self.preset_points_select + '(2x1), ' + self.motion_sensor + ', ' + self.default_pic_settings_switch + ',' + self.sharpness_slider + '(2x1), ' + self.motion_switch,
-          '    - ' + self.up_down_slider + '(2x1), ' + self.start_cruise_select + '(2x1),' + self.recording_sensor + ', ' + self.soundalarm_sensor + ', ' + self.last_error_sensor + '(2x1), ' + self.snap_picture_switch,
-          '',
-          'my_camera:',
-          '    widget_type: camera',
-          '    entity_picture: ' + self.config["HASS"]["ha_url"] + '/api/camera_proxy_stream/camera.' + self.camera_name + '?api_password=' + self.config["HASS"]["ha_key"],
-          '    title: ' + self.camera_name,
-          '    refresh: 120',
-          self.recording_sensor + ':',
-          '    widget_type: sensor',
-          '    entity: ' + self.recording_sensor,
-          '    title: Recording',
-          self.motion_sensor + ':',
-          '    widget_type: sensor',
-          '    entity: ' + self.motion_sensor,
-          '    title: Motion',
-          self.soundalarm_sensor + ':',
-          '    widget_type: sensor',
-          '    entity: ' + self.soundalarm_sensor,
-          '    title: Sound alarm',
-          self.saturation_slider + ':',
-          '    widget_type: new_input_slider',
-          '    entity: ' + self.saturation_slider,
-          '    title: Saturation',
-          self.contrast_slider + ':',
-          '    widget_type: new_input_slider',
-          '    entity: ' + self.contrast_slider,
-          '    title: Contrast',
-          self.brightness_slider + ':',
-          '    widget_type: new_input_slider',
-          '    entity: ' + self.brightness_slider,
-          '    title: Brightness',
-          self.hue_slider + ':',
-          '    widget_type: new_input_slider',
-          '    entity: ' + self.hue_slider,
-          '    title: Hue',
-          self.sharpness_slider + ':',
-          '    widget_type: new_input_slider',
-          '    entity: ' + self.sharpness_slider,
-          '    title: Sharpness',
-          self.left_right_slider + ':',
-          '    widget_type: new_input_slider',
-          '    entity: ' + self.left_right_slider,
-          '    title: Move Left',
-          '    title2: Move Right',
-          self.up_down_slider + ':',
-          '    widget_type: new_input_slider',
-          '    entity: ' + self.up_down_slider,
-          '    title: Move Up(right)',
-          '    title2: Move Down(left)',
-          self.zoom_slider + ':',
-          '    widget_type: vertical_input_slider',
-          '    entity: ' + self.zoom_slider,
-          '    title: Zoom',
-        ]
+        if self.PTZ and self.infraredcam:
+          dashboardlines = [
+            'title: camera',
+            'widget_dimensions: [' + str(widgetwidth) + ', ' + str(widgetheight) + ']',
+            'widget_size: [1,1]',
+            'widget_margins: [2, 2]',
+            'columns: 10',
+            'global_parameters:',
+            '    use_comma: 1',
+            '    precision: 0',
+            '    use_hass_icon: 1',
+            '',
+            'layout:',
+            '    - my_camera(7x4), ' + self.saturation_slider + '(2x1), ' + self.flip_switch,
+            '    - ' + self.contrast_slider + '(2x1), ' + self.mirror_switch,
+            '    - ' + self.brightness_slider + '(2x1), ' + self.auto_infrared_switch,
+            '    - ' + self.hue_slider + '(2x1), ' + self.infrared_switch,
+            '    - ' + self.left_right_slider + '(2x1), ' + self.zoom_slider + '(1x2), ' + self.preset_points_select + '(2x1), ' + self.motion_sensor + ', ' + self.default_pic_settings_switch + ',' + self.sharpness_slider + '(2x1), ' + self.motion_switch,
+            '    - ' + self.up_down_slider + '(2x1), ' + self.start_cruise_select + '(2x1),' + self.recording_sensor + ', ' + self.soundalarm_sensor + ', ' + self.last_error_sensor + '(2x1), ' + self.snap_picture_switch,
+            '',
+            'my_camera:',
+            '    widget_type: camera',
+            '    entity_picture: ' + self.config["HASS"]["ha_url"] + '/api/camera_proxy_stream/camera.' + self.camera_name + '?api_password=' + self.config["HASS"]["ha_key"],
+            '    title: ' + self.camera_name,
+            '    refresh: 120',
+            self.recording_sensor + ':',
+            '    widget_type: sensor',
+            '    entity: ' + self.recording_sensor,
+            '    title: Recording',
+            self.motion_sensor + ':',
+            '    widget_type: sensor',
+            '    entity: ' + self.motion_sensor,
+            '    title: Motion',
+            self.soundalarm_sensor + ':',
+            '    widget_type: sensor',
+            '    entity: ' + self.soundalarm_sensor,
+            '    title: Sound alarm',
+            self.saturation_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.saturation_slider,
+            '    title: Saturation',
+            self.contrast_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.contrast_slider,
+            '    title: Contrast',
+            self.brightness_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.brightness_slider,
+            '    title: Brightness',
+            self.hue_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.hue_slider,
+            '    title: Hue',
+            self.sharpness_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.sharpness_slider,
+            '    title: Sharpness',
+            self.left_right_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.left_right_slider,
+            '    title: Move Left',
+            '    title2: Move Right',
+            self.up_down_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.up_down_slider,
+            '    title: Move Up(right)',
+            '    title2: Move Down(left)',
+            self.zoom_slider + ':',
+            '    widget_type: vertical_input_slider',
+            '    entity: ' + self.zoom_slider,
+            '    title: Zoom',
+          ]
+        elif not self.PTZ and self.infraredcam:
+          dashboardlines = [
+            'title: camera',
+            'widget_dimensions: [' + str(widgetwidth) + ', ' + str(widgetheight) + ']',
+            'widget_size: [1,1]',
+            'widget_margins: [2, 2]',
+            'columns: 10',
+            'global_parameters:',
+            '    use_comma: 1',
+            '    precision: 0',
+            '    use_hass_icon: 1',
+            '',
+            'layout:',
+            '    - my_camera(7x4), ' + self.saturation_slider + '(2x1), ' + self.flip_switch,
+            '    - ' + self.contrast_slider + '(2x1), ' + self.mirror_switch,
+            '    - ' + self.brightness_slider + '(2x1), ' + self.auto_infrared_switch,
+            '    - ' + self.hue_slider + '(2x1), ' + self.infrared_switch,
+            '    - spacer(2x1), spacer(1x2), spacer(2x1), ' + self.motion_sensor + ', ' + self.default_pic_settings_switch + ',' + self.sharpness_slider + '(2x1), ' + self.motion_switch,
+            '    - spacer(2x1), spacer(2x1),' + self.recording_sensor + ', ' + self.soundalarm_sensor + ', ' + self.last_error_sensor + '(2x1), ' + self.snap_picture_switch,
+            '',
+            'my_camera:',
+            '    widget_type: camera',
+            '    entity_picture: ' + self.config["HASS"]["ha_url"] + '/api/camera_proxy_stream/camera.' + self.camera_name + '?api_password=' + self.config["HASS"]["ha_key"],
+            '    title: ' + self.camera_name,
+            '    refresh: 120',
+            self.recording_sensor + ':',
+            '    widget_type: sensor',
+            '    entity: ' + self.recording_sensor,
+            '    title: Recording',
+            self.motion_sensor + ':',
+            '    widget_type: sensor',
+            '    entity: ' + self.motion_sensor,
+            '    title: Motion',
+            self.soundalarm_sensor + ':',
+            '    widget_type: sensor',
+            '    entity: ' + self.soundalarm_sensor,
+            '    title: Sound alarm',
+            self.saturation_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.saturation_slider,
+            '    title: Saturation',
+            self.contrast_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.contrast_slider,
+            '    title: Contrast',
+            self.brightness_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.brightness_slider,
+            '    title: Brightness',
+            self.hue_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.hue_slider,
+            '    title: Hue',
+            self.sharpness_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.sharpness_slider,
+            '    title: Sharpness',
+          ]
+        elif not self.PTZ and not self.infraredcam:
+          dashboardlines = [
+            'title: camera',
+            'widget_dimensions: [' + str(widgetwidth) + ', ' + str(widgetheight) + ']',
+            'widget_size: [1,1]',
+            'widget_margins: [2, 2]',
+            'columns: 10',
+            'global_parameters:',
+            '    use_comma: 1',
+            '    precision: 0',
+            '    use_hass_icon: 1',
+            '',
+            'layout:',
+            '    - my_camera(7x4), ' + self.saturation_slider + '(2x1), ' + self.flip_switch,
+            '    - ' + self.contrast_slider + '(2x1), ' + self.mirror_switch,
+            '    - ' + self.brightness_slider + '(2x1)',
+            '    - ' + self.hue_slider + '(2x1)',
+            '    - spacer(2x1), spacer(1x2), spacer(2x1), ' + self.motion_sensor + ', ' + self.default_pic_settings_switch + ',' + self.sharpness_slider + '(2x1), ' + self.motion_switch,
+            '    - spacer(2x1), spacer(2x1),' + self.recording_sensor + ', ' + self.soundalarm_sensor + ', ' + self.last_error_sensor + '(2x1), ' + self.snap_picture_switch,
+            '',
+            'my_camera:',
+            '    widget_type: camera',
+            '    entity_picture: ' + self.config["HASS"]["ha_url"] + '/api/camera_proxy_stream/camera.' + self.camera_name + '?api_password=' + self.config["HASS"]["ha_key"],
+            '    title: ' + self.camera_name,
+            '    refresh: 120',
+            self.recording_sensor + ':',
+            '    widget_type: sensor',
+            '    entity: ' + self.recording_sensor,
+            '    title: Recording',
+            self.motion_sensor + ':',
+            '    widget_type: sensor',
+            '    entity: ' + self.motion_sensor,
+            '    title: Motion',
+            self.soundalarm_sensor + ':',
+            '    widget_type: sensor',
+            '    entity: ' + self.soundalarm_sensor,
+            '    title: Sound alarm',
+            self.saturation_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.saturation_slider,
+            '    title: Saturation',
+            self.contrast_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.contrast_slider,
+            '    title: Contrast',
+            self.brightness_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.brightness_slider,
+            '    title: Brightness',
+            self.hue_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.hue_slider,
+            '    title: Hue',
+            self.sharpness_slider + ':',
+            '    widget_type: new_input_slider',
+            '    entity: ' + self.sharpness_slider,
+            '    title: Sharpness',
+          ]
+ 
+
         for line in dashboardlines:
           dashboard.write(line + '\n')
     except IOError as e:
