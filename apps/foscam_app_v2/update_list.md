@@ -6,3 +6,6 @@
   - added 2 dashboards for cams without PTZ and without infrared
   - changed the motion detect on/off switch handling
   - added automatic install for untangle
+  
+2.0.2 (2018/1/2)
+  - changed from untangle to xml.etree
