@@ -27,11 +27,11 @@ if this gives back info then you can use the app. please contact me to add the c
   
 ## Installation
 
-- this app can only be used with a working version from Appdaemon (for installation from appdaemon see: http://appdaemon.readthedocs.io/en/latest/index.html ) it expects at least version 2.1.8. it also expects that you have set the setting dash_dir in appdaemon.yaml Default this is pointing to the dir /path/to/conf/dashboards if you didnt set it. But if you want this app to create dashboards it needs that setting. for more info about setting the dash_dir see the appdaemon documentation.
+- this app can only be used with a working version from Appdaemon (for installation from appdaemon see: http://appdaemon.readthedocs.io/en/latest/index.html ) it expects at least version 2.1.12. it also expects that you have set the setting dash_dir in appdaemon.yaml Default this is pointing to the dir /path/to/conf/dashboards if you didnt set it. But if you want this app to create dashboards it needs that setting. for more info about setting the dash_dir see the appdaemon documentation.
 - besides appdaemon you need to install the custom widgets new_input_slider and vertical_ipnput_slider if you want a full working dashboard you can find them here: https://github.com/ReneTode/My-AppDaemon/tree/master/custom_widgets
 - you need to have the camera added and working in homeassistant
   https://home-assistant.io/components/camera.foscam/
-- create in homeassistant the entities you can find in the file add_to_ha_configuration (input_boolean, input_sliders oder numbers and groups)
+- create in homeassistant the entities you can find in the file add_to_ha_configuration (input_booleans, input_selects, input_numbers and groups)
 
 if all requirements are met you can install the app.
 - download the file foscam.py and move it to your app directory from appdaemon
