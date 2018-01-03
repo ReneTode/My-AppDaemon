@@ -10,14 +10,15 @@ changes, improvement and bug removal is only done in the V2 for 0.55 and higher.
 i created 3 groups of cams that work with this app, but only group 1 has full functionality.
 
 1) F19828P, F19828P V2, F19928P, R2, F19821W V2    
-   cams that are PTZ and with infrared light controlled with type 2 CGI commands
+   cams that are PTZ and with infrared light 
 2) C1, C1 V3    
    no PTZ cams with infrared
 3) C1 lite    
    no PTZ cams without infrared
    
+not all foscam cameras use the same CGI commands. there are 2 kinds of CGI. the older cams that use the old CGI are not supported by this app.   
 if your cam isnt here it can still work, but i dont know the type.
-to check if your cam is from group 1 give this url in your browser:
+to check if your cam is working with this app, give this url in your browser:
 
    http://CAM_IP:CAM_POORT/cgi-bin/CGIProxy.fcgi?cmd=getDevState&usr=YOUR_USER_NAME&pwd=YOUR_PWD
    
