@@ -102,6 +102,8 @@ if you have done everything right you now can start your dashboard like http://y
 i welcome any feedback you can find discussion and help in this topic:
 https://community.home-assistant.io/t/foscam-app-v2-appdaemon-and-hadashboard/29270
 
-footnote: it is optional to set the dash_dir argument in appdaemon.yaml after installing appdaemon.
+footnotes: 
+1) it is optional to set the dash_dir argument in appdaemon.yaml after installing appdaemon.
 but untill i found a better way that setting is needed. if you dont want it at another place then set your dash_dir to /full/path/to/conf/dashboards
-
+2) to make sure this app is working like you want to you need to set some settings in the foscam app, before you start this app. motion detection needs to be set to on with all settings set to how you like it. the app can then save those settings during the initialisation and reuse them every time you activate motion detection. also it is wise to set all cruisepresets and preset positions in the foscam app before you add the input_selects to home assistant. during the initialisation the app gets the following settings from your cam: motion detection settings, picture settings like brightness, contrast, etc, flip and mirrorstate, infraredstate. every 10 seconds (or the amount of time you have set in the settings) the app gets the following settings from your cam: motion detection, recording, sound detection, infrared state
+3) zoom and PTZ movement are done by changing the sliders. the more you move the slider away from the center, the higher the speed. movement and zoom automaticly stops after 1 second, unless you start cruises.
