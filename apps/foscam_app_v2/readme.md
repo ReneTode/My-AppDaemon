@@ -9,11 +9,11 @@ changes, improvement and bug removal is only done in the V2 for 0.55 and higher.
 
 i created 3 groups of cams that work with this app, but only group 1 has full functionality.
 
-1) F19828P, F19828P V2, F19928P, R2, F19821W V2
+1) F19828P, F19828P V2, F19928P, R2, F19821W V2.
    cams that are PTZ and with infrared light controlled with type 2 CGI commands
-2) C1, C1 V3
+2) C1, C1 V3.
    no PTZ cams with infrared
-3) C1 lite   
+3) C1 lite.
    no PTZ cams without infrared
    
 if your cam isnt here it can still work, but i dont know the type.
