@@ -102,8 +102,8 @@ The first 3 lines are already in our first app, so just copy/paste.
 Then we get:
 
 ```
-    self.runatsunset(self.light_on_function, ,offset = int(self.args["sunset_offset"])
-    self.runatsunrise(self.light_off_function, ,offset = int(self.args["sunrise_offset"])
+    self.runatsunset(self.light_on_function,offset = int(self.args["sunset_offset"]))
+    self.runatsunrise(self.light_off_function,offset = int(self.args["sunrise_offset"]))
 ```
 
 Actually there is only 1 thing that I haven't talked about already and that is the part **int() :two:**  
