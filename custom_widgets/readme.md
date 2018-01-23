@@ -3,8 +3,9 @@
 ![Alt text](custom_widgets_new3.jpg)
 
 place the files in the directory /conf/custom_widgets
-use my custom skin waterdrops (to be found in custom css) or edit variables.yaml in your own or the default skin.
-the lines to add can be found in here in custom_css/default/variables.yaml
+
+important! you need to use my custom skin waterdrops (to be found in custom css) or edit variables.yaml in your own skin or the default skin.   
+the lines to add to the variables.yaml can be found on this github in custom_css/default/variables.yaml
 
 to activate the temperature and radial widgets you need to download canvas gauges that can be found here:
 https://github.com/Mikhus/canvas-gauges
