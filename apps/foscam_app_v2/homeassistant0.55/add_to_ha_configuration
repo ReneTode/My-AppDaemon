@@ -94,6 +94,23 @@ input_number:
     step: 1
     icon: mdi:image-filter
 
+input_select:
+  foscam_preset_points:
+    name: Preset points
+    options:
+     - top
+     - bottom
+     - most left
+     - most right
+    initial: top
+  foscam_preset_cruise:
+    name: Preset cruises
+    options:
+     - horizontal
+     - vertical
+    initial: horizontal
+
+
 groups:
   foscamsettings:
     name: Foscam
