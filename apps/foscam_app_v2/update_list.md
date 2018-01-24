@@ -12,3 +12,6 @@
   - moved flip and mirror check to initialize
   - changed from urllib to requests for performance reason
   
+2.0.3 (2018/1/24)
+  - changed the logging to intercept timeout exceptions.
+  - changed timeout logging level from warning to info
