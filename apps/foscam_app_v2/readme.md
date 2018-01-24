@@ -3,6 +3,9 @@
 from 2018/1/1 i dont support HA versions below 0.55 anymore because of the breaking changes and i have moved to 0.60
 changes, improvement and bug removal is only done in the V2 for 0.55 and higher.
 
+this app is not yet up to date for appdaemon 3.0Beta. I tested it and it will work if you take care of the breaking changes
+I will add the version for that appdaemon version in a short while.
+
 ![Alt text](images/camera_new_skinless_release.jpg)
 ![Alt text](images/foscam_main_settings.jpg)![Alt text](images/foscam_picture_settings.jpg)
 ## Cameratypes that work with this
