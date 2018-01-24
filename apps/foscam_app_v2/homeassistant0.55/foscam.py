@@ -364,8 +364,8 @@ class foscam(appapi.AppDaemon):
     try:
       response =requests.get(self.url + command,timeout=10)
       data= ET.fromstring(response.content)
-    except timeout:
-      self.my_log(" Camera took more then 10 seconds", "WARNING")
+    except requests.exceptions.ReadTimeout:
+      self.my_log(" Camera took more then 10 seconds", "INFO")
       return ""
     if data[0].text == "0":
       self.my_log(" Camera state ok", "INFO")
