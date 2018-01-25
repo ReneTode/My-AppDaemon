@@ -37,7 +37,7 @@ columns: 7
 your_heater:
   widget_type: heater
   icon_entity: switch.any_switchtype_entity
-  slider_entity: input_slider.any_inputslider
+  slider_entity: input_number.any_inputslider
   title: Just a
   title2: Heater
 your_light:
@@ -52,12 +52,12 @@ your_light2:
   title2: Light
 your_vertical_slider:
   widget_type: vertical_input_slider
-  entity: input_slider.your_slider
+  entity: input_number.your_slider
   title: Just a
   title2: slider
 your_horizontal_slider:
   widget_type: new_input_slider
-  entity: input_slider.your_slider2
+  entity: input_number.your_slider2
   title: Just a
   title2: slider
 your_input_select:
