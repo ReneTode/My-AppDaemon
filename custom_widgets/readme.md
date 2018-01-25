@@ -3,7 +3,7 @@
 ![Alt text](custom_widgets_new3.jpg)
 
 ### these widgets are for Appdaemon version 2.1.12
-### Appdaemon version 3.0b has some of these widgets included. (radial, temperature, vertical_slider (called input_slider) and input_select
+### Appdaemon version 3.0b has some of these widgets included. (radial, temperature, vertical_slider (called input_slider) and input_select)
 
 place the files in the directory /conf/custom_widgets
 
