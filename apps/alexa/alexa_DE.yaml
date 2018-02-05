@@ -128,7 +128,7 @@ alexa_api: # appdaemon skill
       - "{{device}} ist auf diese moment "
     Error: <p>Ich habe nicht richtig verstanden welches geraet oder sensor du wissen wollte</p>
     unreadableState: "unlesbar fuer mich"
-    sensors:
+    entities:
       wohnzimmer temperature: sensor.huiskamer_box_4_1
       schlaffzimmer temperature: sensor.slaapkamer_1_30_0
       terrasse temperature: sensor.vijver_repeater_7_0
