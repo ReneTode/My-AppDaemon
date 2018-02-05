@@ -12,7 +12,6 @@ alexa_api: # appdaemon skill
     - olinde
     - farah
     - marjolijn
-    - fara
   launchRequest:
     - <p><say-as interpret-as='interjection'>bonjour</say-as>, bist du wieder da?</p> <p>wie kann ich dir helfen?</p>
     - <p><say-as interpret-as='interjection'>aloha</say-as>, wie gehts es dir?</p> <p>kann ich etwas fuer dich tun?</p>
