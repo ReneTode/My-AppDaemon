@@ -34,13 +34,13 @@ in the near future i will change my apps to version 3
 
 ## custom Widgets for HADashboard
 
-1) input_select
-2) horizontal slider
+1) input_select (default in appdaemon version 3)
+2) horizontal slider (default in appdaemon version 3)
 3) vertical slider
 4) lightswitch with brightness slider
 5) lightswitch with colorpicker
-6) thermometer (fully customisable)
-7) radial (fully customisable)
+6) thermometer (fully customisable) (default in appdaemon version 3)
+7) radial (fully customisable) (default in appdaemon version 3)
 8) combination from switch and input_slider (heater)
 9) icon sensor
 
