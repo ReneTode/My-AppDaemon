@@ -1,9 +1,3 @@
-beer_sneeuwman.txt
 sultan.txt
-beer_Kartoffelzwerg.txt
-berenwald.txt
-bromberen.txt
-plushteddy.txt
-eichornchenundmaus.txt
 bienenkonigin.txt
 berenhauter.txt
