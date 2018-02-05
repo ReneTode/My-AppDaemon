@@ -1,7 +1,28 @@
 ## AppDaemon for beginner
  
+## remark up front
+
+This tutorial is written for appdaemon version 2. There have been some changes in appdaemon 3.
+That doesnt effect much from this tutotial, but 2 things should be changed if you use version 3:
+when you read the line:
+```
+import appdaemon.appapi as appapi
+```
+replace that with:
+```
+import appdaemon.plugins.hass.hassapi as hass
+```
+and when you see:
+```
+appapi.AppDaemon
+```
+replace that with:
+```
+hass.Hass
+```
+
 ## Introduction
- 
+
 Any automation you can think off in HomeAssistant can be done with AppDaemon.
 The first question that could probably be asked is: "Why use AppDaemon when it is all possible in HomeAssistant itself?"
  
