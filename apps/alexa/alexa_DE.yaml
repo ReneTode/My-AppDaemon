@@ -1,11 +1,3 @@
-##########################################################################
-# Alexa related                                                          #
-##########################################################################
-#speaktoalexa: # use TTS to activate alexa
-#  module: speaktoalexa
-#  class: speaktext
-#  dependencies: new_sound
-
 alexa_api: # appdaemon skill
   module: alexa_api
   class: alexa_api
