@@ -669,14 +669,14 @@ class alexa_api(hass.Hass):
         # but it also can be any other kind of entity
         ############################################           
         try:
-            entityname = self.args["entities"][self.slots["device"]]
+            entityname = self.args["lightStateIntent"]["entities"][self.slots["device"]]
             state = self.get_state(entityname)
             if isinstance(state,float):
                 if self.args["language"] == "DE":
                     state = self.floatToStr(state)
                 else:
                     state = str(state)
-            elif isinstance(state,basestring):
+            elif isinstance(state,str):
                 state = state
             else:
                 state = self.args["lightstateIntent"]["unreadableState"]
@@ -684,4 +684,3 @@ class alexa_api(hass.Hass):
         except:
             text = self.random_arg(self.args["lightStateIntent"]["Error"])
         return text
-
