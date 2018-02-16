@@ -6,3 +6,8 @@ at this moment i only have a german version but i will add an english version as
 
 i will also add a tutotial how to add a skill to amazon alexa so you can use it step by step.
 if you have questions dont hesitate to ask me on the forum, on discord or here.
+
+i did create a new repository for this app.
+it can be found here:
+
+https://github.com/ReneTode/Alexa-Appdaemon-App
