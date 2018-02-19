@@ -24,13 +24,15 @@ hass.Hass
 in the near future i will change my apps to version 3
 
 
-1) Foscam V1 (an app for controlling a  foscam camera) for older versions from appdaemon and homeassistant
-2) Foscam V2 (the new version with automatic generated dashboards and better errors)
-3) Sound (tts and soundcontrol directly in the app)
-4) lightschedule (a clear view on when you turn on and off your lights)
+1) Foscam V1 (deprecated)
+2) Foscam V2 (deprecated)
+3) Foscam V3 (updated for appdaemon 3.0)
+https://github.com/ReneTode/Foscam-app
+4) Sound (tts and soundcontrol directly in the app)
 5) google assistant as app controlable drom home assistant
 6) groups 2.0 (an app to use wildcards for groups)
 7) alexa (an app to let alexa communicate with appdaemon)(already version 3!)
+  https://github.com/ReneTode/Alexa-Appdaemon-App
 
 ## custom Widgets for HADashboard
 
