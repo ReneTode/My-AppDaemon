@@ -52,3 +52,9 @@ heater_slider_style: ""
 heater_widget_style: $background_style
 heater_icon_style_active: $style_active
 heater_icon_style_inactive: $style_inactive
+
+iconsensor_icon_style_active: $style_active
+iconsensor_title_style: $style_title
+iconsensor_title2_style: $style_title2
+iconsensor_widget_style: $background_style
+iconsensor_state_text_style: "color: $white"

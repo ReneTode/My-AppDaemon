@@ -2,24 +2,8 @@
  
 ## remark up front
 
-This tutorial is written for appdaemon version 2. There have been some changes in appdaemon 3.
-That doesnt effect much from this tutotial, but 2 things should be changed if you use version 3:
-when you read the line:
-```
-import appdaemon.appapi as appapi
-```
-replace that with:
-```
-import appdaemon.plugins.hass.hassapi as hass
-```
-and when you see:
-```
-appapi.AppDaemon
-```
-replace that with:
-```
-hass.Hass
-```
+This tutorial is rewritten for appdaemon version 3. if you have an older version installed i advice you to upgrade.
+
 
 ## Introduction
 
@@ -32,6 +16,16 @@ And although things like yaml, jinja, etc. are not very hard to get to know, I t
 So if you know your way around in yaml, jinja, etc. there is no actual need to start using AppDaemon unless you run into some boundaries.
  
 Now you know why I use AppDaemon, so let’s start with some basic understanding.
+
+First i need to tell you a bit about the structure from appdaemon 3.
+In our appdaemon.yaml we can set our apps directory. If you dont set it there it will default to conf/apps (where conf is the directory that contains your appdaemon.yaml)
+That directory is very important to us, because we only can create our apps there.
+Every app has 2 parts:
+- a py file that contains your code (like something.py)
+- a yaml file that contains configuration from our app. (like something.yaml)
+An app can have several instances (we can reuse the py file several times, just by adding another app instance to the yaml)
+So now you know what I talk about when i talk about a py file, or our yaml 
+Don't get scared by this, I will tell you what to save. ;)
  
 ## Our first App
  
@@ -67,12 +61,13 @@ I think you can’t get any more basic then that, do you?
 So let’s try to translate that to AppDaemon.
  
 ```
-import appdaemon.appapi as appapi
+import appdaemon.plugins.hass.hassapi as hass
  
-class your_class_name(appapi.AppDaemon):
+class your_class_name(hass.Hass):
  
   def initialize(self): 
     self.listen_state(self.what_we_want_to_do,"input_boolean.some_choice", new="on")
+	
   def what_we_want_to_do (self, entity, attribute, old, new, kwargs):
     a_variabele_with_a_usable_name = self.get_state("device_tracker.some_mobile")
     if  a_variabele_with_a_usable_name == "home":
@@ -91,9 +86,9 @@ But enough now with the psychology, back to our app.
 First we start with some parts that are in all apps:
 
 ```
-import appdaemon.appapi as appapi
+import appdaemon.plugins.hass.hassapi as hass
  
-class your_class_name(appapi.AppDaemon):
+class your_class_name(hass.Hass):
  
   def initialize(self): 
  ```
@@ -104,7 +99,7 @@ Of course you only collect those books which are helpful with your topic. If you
 In python it is the same. We won’t use any other libraries in this app, but maybe later we use another one like datetime and then we would set "import datetime" beneath the other import.
  
 In the second line we start a **class:two:**. And in this case I have given the class the name “your_class_name”. You can use any name there that you like. The most important thing about naming things is that it makes sense to you (and maybe later also for others).  
-After that part, we find between the brackets, **appapi.AppDaemon:one:**. In every class we use in AppDaemon we use that. It would be too much to explain classes in python, but you can search for "python classes" on Google if you would like to learn more about it.
+After that part, we find between the brackets, **hass.Hass:one:**. In every class we use in AppDaemon we use that. It would be too much to explain classes in python, but you can search for "python classes" on Google if you would like to learn more about it.
  
 In the third line we create a function. I hear you think: "what is a function?"  
 In short a function is a tiny action from your app. let’s say you want to add 2 figures over and over. Then you could write a function called addup which returns that value. You call it by writing "addup(5,7)".  
@@ -201,9 +196,9 @@ That’s all. We don’t need "then" at all. The “:” takes care of that. We 
  
 So let’s put it all together again:
 ```
-import appdaemon.appapi as appapi
+import appdaemon.plugins.hass.hassapi as hass
  
-class your_class_name(appapi.AppDaemon):
+class your_class_name(hass.Hass):
  
   def initialize(self): 
     self.listen_state(self.what_we_want_to_do,"input_boolean.some_choice", new="on")
@@ -215,11 +210,11 @@ class your_class_name(appapi.AppDaemon):
 ```
  
 Our app is ready to go. there is only 1 thing we need to do.  
-We need to tell AppDaemon to use the app. For that we copy our app in the appdirectory we have set in the cfg file and we give it a name, lets say some_app.py  
-Then we make a part in the cfg file to tell AppDaemon to use the app like this:
+We need to tell AppDaemon to use the app. For that we copy our app in the apps directory we have set in the appdaemon.yaml file and we give it a name, lets say some_app.py  
+Then we make a yaml file in the apps directory (you can use any name for it, but i suggest to use the same name as the py file) to tell AppDaemon to use the app like this:
 ```
 our_automation_name:       #any name you like.
-  module: some_app         #that was the name we used for our app
+  module: some_app         #that was the name we used for our py file
   class: your_class_name   #and this was the name from our class
 ```
  

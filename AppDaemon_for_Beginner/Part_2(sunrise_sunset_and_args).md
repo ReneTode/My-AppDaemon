@@ -17,11 +17,11 @@ They are really what they seem to be. Just the time that the sun will set or ris
 We can use that anywhere in our pythonscripts to compare to your local time for instance.  
 
 But wait there is even more!  
-Andrew also created **self.runatsunset(The_function_you want_to_start, offset, kwargs) :one:** and **self.run_at_sunrise(The_function_you want_tostart, offset, kwargs) :one:**  
+Andrew also created **self.run_at_sunset(The_function_you want_to_start, offset, kwargs) :one:** and **self.run_at_sunrise(The_function_you want_tostart, offset, kwargs) :one:**  
 I think you understand that this could be used as trigger, so in our initialize function.  
 Don't be scared from the word **kwargs :two:**. It is not klingon language or so (yeah I am a startrek fan) Kwargs is a python word that is used on a place where you can use several variables you want to pass to the function.  
 So at that place you can give something to your function. Maybe you like to give a description or a color for your lights. I don't use it a lot actually, but it is there.  
-Do you think that's all? Not in AppDaemon. We also have: **self.sunup() :one:** and **self.sun_down() :one:** So we can check if the sun is up or down without calculating or thinking.  
+Do you think that's all? Not in AppDaemon. We also have: **self.sun_up() :one:** and **self.sun_down() :one:** So we can check if the sun is up or down without calculating or thinking.  
 
 ## Args
 
@@ -30,9 +30,9 @@ Args! No again its not klingon language ;) Args is short for arguments. Good arg
 Just to give you an example: x + 1 = ?  
 I guess you cant give the answer right now. but you can if I tell you that x is 4, and also when I say that x = 67.  
 That's what we do with args.  
-In our python script we use **self.args["your_arg_name"] :one:** and then we can put those args in our apps.yaml file.  
+In our python script we use **self.args["your_arg_name"] :one:** and then we can put those args in our yaml file.  
 Note that this is not a function. A function would have the variables between () and here you use []. Actually that's not really important, but now you know why we don't use ()
-In our cfg file we could then put your_arg_name = Mr. Bean and in another part we could place your_argname = Queen Elisabeth.
+In our yaml file we could then put "your_arg_name: Mr. Bean" and in another part we could place "your_argname: Queen Elisabeth".
 Off course we don't want to automate those people, but I learned that it sometimes helps to think of something weird to remember easy things.
 In our case we could use it to write a small script (like our first app) and use it over and over.
 
@@ -54,9 +54,9 @@ And then we would add
   lightID: light.some_light
 ```
 
-to our apps.yaml file.
+to our yaml file.
 And after that we could also use some_other_light without changing our app.
-In our apps.yaml file we just make it like this:
+In our yaml file we just make it like this:
 
 ```
 some_light_on:  
@@ -81,19 +81,19 @@ Ok now let's make a light go on based on sunset and let it go out based on sunri
 Here is the full app (we could make 2 apps out of this 1 for sunset and 1 for sunrise, but let's keep this together):
 
 ```
-import appdaemon.appapi as appapi
+import appdaemon.plugins.hass.hassapi as hass
 
-class sun_down_lights(appapi.AppDaemon):
+class sun_down_lights(hass.Hass):
 
   def initialize(self):
-    self.runatsunset(self.light_on_function, ,offset = int(self.args["sunset_offset"])
-    self.runatsunrise(self.light_off_function, ,offset = int(self.args["sunrise_offset"])
+    self.run_at_sunset(self.light_on_function, ,offset = int(self.args["sunset_offset"])
+    self.run_at_sunrise(self.light_off_function, ,offset = int(self.args["sunrise_offset"])
 
   def light_onfunction (self, kwargs):
-      self.turnon(self.args["lightID"])
+      self.turn_on(self.args["lightID"])
 
   def light_offfunction (self, kwargs):
-      self.turnoff(self.args["lightID"])
+      self.turn_off(self.args["lightID"])
 ```
 
 That's all it is. So let's break it down again:
@@ -102,16 +102,16 @@ The first 3 lines are already in our first app, so just copy/paste.
 Then we get:
 
 ```
-    self.runatsunset(self.light_on_function,offset = int(self.args["sunset_offset"]))
-    self.runatsunrise(self.light_off_function,offset = int(self.args["sunrise_offset"]))
+    self.run_at_sunset(self.light_on_function,offset = int(self.args["sunset_offset"]))
+    self.run_at_sunrise(self.light_off_function,offset = int(self.args["sunrise_offset"]))
 ```
 
 Actually there is only 1 thing that I haven't talked about already and that is the part **int() :two:**  
 As you see it has brackets. So it is a function that is standard python. All that it does is convert a **string (text) :two:** to an **integer (number) :two:**.  
-All arguments you get with self.args are variables of the type string. And for the functions run_at_sunset and run_at_sunrise we need a variable from the type integer. So we convert the string to an integer.  
+All arguments you get with self.args can be variables of the type string. And for the functions run_at_sunset and run_at_sunrise we need a variable from the type integer. So we convert the string to an integer.  
 Obviously that only works if the variable actually contains numbers and not just characters.  
 I used **'offset=' :one:** in our lines. The keyword offset is important because we can also give on other variables to our function. For instance **random=... :one:**
-The arguments sunset_offset and sunrise_offset we can later set in our cfg file.
+The arguments sunset_offset and sunrise_offset we can later set in our yaml file.
 
 The next line:
 
@@ -124,7 +124,7 @@ Is where we name our function. Do you remember that I told you that there are a 
 Then we get:
 
 ```
-      self.turnon(self.args["lightID"])
+      self.turn_on(self.args["lightID"])
 ```
 
 Not much to say about that anymore. We talked about that when I explained about args.
@@ -132,13 +132,13 @@ And off course I can also tell nothing more than you know already about the last
 
 That was easy, wasn't it?
 
-Only 1 thing more to do. Edit our cfg file again.  
+Only 1 thing more to do. Edit our yaml file again.  
 So lets make to lights go on when the sun is down.  
 The first 1 hour before sunset until 1 hour after sunrise and the second from sunset to sunrise.
 
 O boy, I forgot something. We haven't saved our app yet. and therefor it hasn't got a name. Lets save it before we lose it and give it the name sun_lights.py
 
-So now edit our apps.yaml file and add these lines:
+So now edit our yaml file and add these lines:
 
 ```
 sun_down_some_light_on:
