@@ -86,8 +86,8 @@ import appdaemon.plugins.hass.hassapi as hass
 class sun_down_lights(hass.Hass):
 
   def initialize(self):
-    self.run_at_sunset(self.light_on_function, ,offset = int(self.args["sunset_offset"])
-    self.run_at_sunrise(self.light_off_function, ,offset = int(self.args["sunrise_offset"])
+    self.run_at_sunset(self.light_on_function,offset = int(self.args["sunset_offset"]))
+    self.run_at_sunrise(self.light_off_function,offset = int(self.args["sunrise_offset"]))
 
   def light_onfunction (self, kwargs):
       self.turn_on(self.args["lightID"])
