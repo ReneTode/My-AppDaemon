@@ -90,10 +90,9 @@ function baseiframe(widget_id, url, skin, parameters)
         {
             url_part3 = "&api_password=" + self.parameters.password;
         }
-        if ("token" in self.parameters)
+        if ("stream" in self.parameters)
         {
-            url_part2 =  "/api/camera_proxy_stream/"+ self.parameters.camera
-            url_part3 = "?token=" + self.parameters.token;
+            url_part2 = url_part2.replace("camera_proxy","camera_proxy_stream");
         }
         url = url_part1 + url_part2 + url_part3;
         view_camera(self, url)
