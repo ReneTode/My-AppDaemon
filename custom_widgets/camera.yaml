@@ -3,6 +3,7 @@ fields:
   title: {{title}}
   camera: ""
   ha_url: ""
+  token: ""
   password: ""
   frame_src: ""
   img_src: ""
