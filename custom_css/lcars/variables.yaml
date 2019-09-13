@@ -75,7 +75,7 @@ button_title_right: "text-align:right;right: 5px;top: unset;bottom: 0px;width: 7
 button_widget_right: "border-bottom-right-radius: calc($factor * 23px);border-top-right-radius: calc($factor * 23px)"
 button_widget_left: "border-bottom-left-radius: calc($factor * 23px);border-top-left-radius: calc($factor * 23px)"
 button_icon_active_right: "$style_active;right: 8px;text-align: right"
-button_icon_active_left: "style_active;left: 8px;text-align: left"
+button_icon_active_left: "$style_active;left: 8px;text-align: left"
 
 sensor_container_right: "width: 25%;align:right;top: -8px;right: 5px"
 sensor_container_stardate: "top: 6px"
@@ -141,6 +141,7 @@ switch_state_text_style: "color: $white"
 label_title_style: $style_title
 label_title2_style: $style_title2
 label_text_style: "color: $black"
+label_state_text_style: "color: $black"
 label_container_style: ""
 label_widget_style: $background_style
 
