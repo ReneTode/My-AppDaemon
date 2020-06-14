@@ -3,48 +3,23 @@ My apps, my helpfiles, all about AppDaemon for Home Assistant
 
 ## Apps
 
-my apps are still written for appdaemon version 2. There have been some changes in appdaemon 3.
-That doesnt effect much from my apps, but 2 things should be changed if you use version 3:
-when you read the line:
-```
-import appdaemon.appapi as appapi
-```
-replace that with:
-```
-import appdaemon.plugins.hass.hassapi as hass
-```
-and when you see:
-```
-appapi.AppDaemon
-```
-replace that with:
-```
-hass.Hass
-```
-in the near future i will change my apps to version 3
+these apps are written for AD 3 and i dont use them anymore, so they might need small changes.
 
-
-1) Foscam V1 (deprecated)
-2) Foscam V2 (deprecated)
-3) Foscam V3 (updated for appdaemon 3.0)
+1) Foscam app (an app to have a dashboard that completely controls foscam camaras)
 https://github.com/ReneTode/Foscam-app
-4) Sound (tts and soundcontrol directly in the app)
-5) google assistant as app controlable drom home assistant
-6) groups 2.0 (an app to use wildcards for groups)
-7) alexa (an app to let alexa communicate with appdaemon)(already version 3!)
+2) groups 2.0 (an app to use wildcards for groups)
+3) alexa (an app to let alexa communicate with appdaemon)(already version 3!)
   https://github.com/ReneTode/Alexa-Appdaemon-App
 
+these apps are written in AD 4
+
+4) broadlink (directly control broadlink devices though appdaemon) https://github.com/ReneTode/broadlink_app
+5) Fully kiosk mqtt (an app to get events and sensors from fully kiosk)
 ## custom Widgets for HADashboard
 
-1) input_select (default in appdaemon version 3)
-2) horizontal slider (default in appdaemon version 3)
-3) vertical slider
-4) lightswitch with brightness slider
-5) lightswitch with colorpicker
-6) thermometer (fully customisable) (default in appdaemon version 3)
-7) radial (fully customisable) (default in appdaemon version 3)
-8) combination from switch and input_slider (heater)
-9) icon sensor
+1) vertical slider
+2) lightswitch with brightness slider
+3) lightswitch with colorpicker
 
 ## custom css
 
