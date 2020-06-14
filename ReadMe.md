@@ -15,7 +15,7 @@ these apps are written in AD 4
 
 4) broadlink (directly control broadlink devices though appdaemon) https://github.com/ReneTode/broadlink_app
 5) Fully kiosk mqtt (an app to get events and sensors from fully kiosk) https://github.com/ReneTode/fully-kiosk-app/tree/master
-
+6) create entities (an app to create all kind of entities in HA from AD, sensors, switches, input_text, input_number, input_boolean)
 
 ## custom Widgets for HADashboard
 
