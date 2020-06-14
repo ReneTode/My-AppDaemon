@@ -14,7 +14,9 @@ https://github.com/ReneTode/Foscam-app
 these apps are written in AD 4
 
 4) broadlink (directly control broadlink devices though appdaemon) https://github.com/ReneTode/broadlink_app
-5) Fully kiosk mqtt (an app to get events and sensors from fully kiosk)
+5) Fully kiosk mqtt (an app to get events and sensors from fully kiosk) https://github.com/ReneTode/fully-kiosk-app/tree/master
+
+
 ## custom Widgets for HADashboard
 
 1) vertical slider
