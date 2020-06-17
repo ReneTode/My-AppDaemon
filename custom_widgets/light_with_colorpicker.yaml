@@ -1,5 +1,5 @@
 widget_type: base_light_with_colorpicker
-entity: {{entity}}
+entity: "{{entity}}"
 post_service_active:
     service: homeassistant/turn_on
     entity_id: {{entity}}
@@ -7,8 +7,8 @@ post_service_inactive:
     service: homeassistant/turn_off
     entity_id: {{entity}}
 fields:
-  title: {{title}}
-  title2: {{title2}}
+  title: "{{title}}"
+  title2: "{{title2}}"
   hex_color: "#000000"
   icon: ""
   icon_style: ""
