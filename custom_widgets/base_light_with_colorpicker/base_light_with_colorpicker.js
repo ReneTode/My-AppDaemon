@@ -122,7 +122,7 @@ function base_light_with_colorpicker(widget_id, url, skin, parameters)
         {
             self.rgb_color =  hex2rgb(self.ViewModel.hex_color())
             args = self.parameters.post_service_active 
-            args["rgb_color"] = self.rgb_color[0]+ "," + self.rgb_color[1]+ "," + self.rgb_color[2]
+            args["rgb_color"] = [self.rgb_color[0],self.rgb_color[1], self.rgb_color[2]]
 	    self.call_service(self, args)
         }
         },500)
