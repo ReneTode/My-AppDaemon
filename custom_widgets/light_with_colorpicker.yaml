@@ -2,7 +2,7 @@ widget_type: base_light_with_colorpicker
 entity: "{{entity}}"
 post_service_active:
     service: homeassistant/turn_on
-    entity_id: {{entity}}
+    entity_id: "{{entity}}"
 post_service_inactive:
     service: homeassistant/turn_off
     entity_id: {{entity}}
