@@ -58,3 +58,4 @@ How to know if our calculations are right?
 That's why we use **self.log():one:**  
 
 
+more questions? Then just come and ask me on the appdaemon discord: https://discord.gg/pHsjADY
