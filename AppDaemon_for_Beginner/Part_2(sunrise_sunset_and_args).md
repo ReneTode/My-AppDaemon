@@ -165,3 +165,5 @@ Have fun trying it out.
 
 **:one: these words are AppDaemon specific. you can find them in the API**   
 **:two: these words you can lookup by googling for "python this_word"**
+
+more questions? Then just come and ask me on the appdaemon discord: https://discord.gg/pHsjADY
