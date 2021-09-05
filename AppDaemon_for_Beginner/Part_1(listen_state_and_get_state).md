@@ -4,6 +4,12 @@
 
 This tutorial is rewritten for appdaemon version 3. if you have an older version installed i advice you to upgrade.
 
+## remark 2
+
+appdaemon 3 was different from appdaemon 2, because it changed to yaml.
+appdaemon 4 is not really different from appdaemon 3 for users. it has more options, more functions, and configuration has changed, but writing apps hasnt really changed.
+there are however nowadays more "styles" of writing apps, and this tutotial teaches "old style"
+"new style" isnt better, it just provides more options when you start working with several plugins and namespaces. those things are just distracting when you start writing your first apps, so thats why i didnt write a "new style" tutorial.
 
 ## Introduction
 
