@@ -39,13 +39,13 @@ In our case we could use it to write a small script (like our first app) and use
 Remember this line?
 
 ```
-      self.turnon("light.somelight")
+      self.turn_on("light.somelight")
 ```
 
 we could rewrite that to:
 
 ```
-      self.turnon(self.args["lightID"])
+      self.turn_on(self.args["lightID"])
 ```
 
 And then we would add
