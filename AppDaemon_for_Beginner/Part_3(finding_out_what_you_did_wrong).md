@@ -57,4 +57,4 @@ How to know if our calculations are right?
 
 That's why we use **self.log():one:**  
 
-**(more is coming soon)** 
+
