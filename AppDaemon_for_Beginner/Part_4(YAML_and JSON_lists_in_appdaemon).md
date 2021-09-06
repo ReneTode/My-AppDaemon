@@ -96,7 +96,7 @@ actually there is no real difference, only the name. In JSON they call a list an
 lets say you get this JSON file from a device:  
 
 ```
-["color", "brightness", "state"]
+'["color", "brightness", "state"]'
 ```
 
 That could be the options you could use for a light.  
