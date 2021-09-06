@@ -13,7 +13,7 @@ lets take the yaml from a simple app
 ```
 test_app:
   module: test # refers to test.py
-  class: test # thats where the app lives
+  class: your_class_name # thats where the app lives
   entities:
     - sensor.a
     - sensor.b
@@ -50,7 +50,7 @@ Also in YAML you can write that different, so you might see the connection bette
 ```
 test_app:
   module: test # refers to test.py
-  class: test # thats where the app lives
+  class: your_class_name # thats where the app lives
   entities: ["sensor.a", "sensor.b", "switch.a", "light.a"]
 ```
 
