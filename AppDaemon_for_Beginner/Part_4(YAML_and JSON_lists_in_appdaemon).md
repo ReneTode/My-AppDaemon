@@ -81,7 +81,7 @@ There are more ways to put things together in python, older ways and newer ways.
 Nowadays most people use f-strings, I however already needed to take a big step from the oldest most simple way to format.  
 You could also write:
 ```
-self.log(entity + " has a new state: " + str(new)
+self.log(entity + " has a new state: " + str(new))
 ```
 
 because thats just python, im not going deeper into that, I just explained this line a bit more.  
